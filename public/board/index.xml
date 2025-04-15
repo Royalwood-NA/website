@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Boards on Royalwood Neighbourhood Association</title>
+    <link>http://localhost:1313/board/</link>
+    <description>Recent content in Boards on Royalwood Neighbourhood Association</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 14 Apr 2025 21:30:01 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/board/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Board Members</title>
+      <link>http://localhost:1313/board/board/</link>
+      <pubDate>Mon, 14 Apr 2025 21:30:01 -0500</pubDate>
+      <guid>http://localhost:1313/board/board/</guid>
+      <description>&lt;h2 id=&#34;vision&#34;&gt;Vision&lt;/h2&gt;&#xA;&lt;p&gt;The Royalwood Neighbourhood Association has a singular goal - &lt;strong&gt;&lt;em&gt;to serve the membership in order to make the community the best in Winnipeg.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;board-members&#34;&gt;Board Members&lt;/h2&gt;&#xA;&lt;div class=&#34;board-bio-content&#34;&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;div class=&#34;our-team&#34;&gt;&#xA;  &lt;div class=&#34;picture&#34;&gt;&#xA;    &lt;img class=&#34;img-fluid&#34; src=&#34;http://localhost:1313/images/board-bio-glen-cottick.jpg&#34;&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;div class=&#34;team-content&#34;&gt;&#xA;    &lt;h3 class=&#34;name&#34;&gt;Glen Cottick&lt;/h3&gt;&#xA;    &lt;h4 class=&#34;title&#34;&gt;Chair&lt;/h4&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;div class=&#34;bio&#34;&gt;&#xA;    &#xA;      &lt;p&gt;Glen has resided on Norcross Cr. since 2001, relishing in the many quiet, natural spaces offered by the neighbourhood. He has held a number of board positions within industry, youth sport, and children&amp;#39;s charities.&#xA;&lt;/p&gt;&#xA;    &#xA;  &lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;div class=&#34;our-team&#34;&gt;&#xA;  &lt;div class=&#34;picture&#34;&gt;&#xA;    &lt;img class=&#34;img-fluid&#34; src=&#34;http://localhost:1313/images/board-bio-vacant.png&#34;&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;div class=&#34;team-content&#34;&gt;&#xA;    &lt;h3 class=&#34;name&#34;&gt;Anirudh Pathak&lt;/h3&gt;&#xA;    &lt;h4 class=&#34;title&#34;&gt;Vice-Chair&lt;/h4&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;div class=&#34;bio&#34;&gt;&#xA;    &#xA;      &lt;p&gt;&amp;lt;Bio to be added&amp;gt;&#xA;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

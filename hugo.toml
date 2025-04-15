@@ -1,3 +1,295 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "http://example.org/"
+
+
+# Change the default theme to be use when building the site with Hugo
+
+theme = "LoveIt"
+
+
+# website title
+
+title = 'Royalwood Neighbourhood Association'
+
+
+# language code ["en", "zh-CN", "fr", "pl", ...]
+
+languageCode = "en"
+
+# language name ["English", "简体中文", "Français", "Polski", ...]
+
+languageName = "English"
+
+
+# Menu config
+
+[menu]
+[[menu.main]]
+weight = 1
+identifier = "posts"
+# you can add extra information before the name (HTML format is supported), such as icons
+pre = ""
+# you can add extra information after the name (HTML format is supported), such as icons
+post = ""
+name = "Posts"
+url = "/posts"
+# title will be shown when you hover on this menu link
+title = ""
+
+[[menu.main]]
+weight = 2
+identifier = "events"
+name = "Events"
+url = "/events"
+
+[[menu.main]]
+weight = 3
+identifier = "membership"
+name = "Membership"
+url = "/membership"
+
+[[menu.main]]
+weight = 4
+identifier = "board"
+name = "Board"
+url = "/board"
+
+
+# Markup related configuration in Hugo
+[markup]
+# Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+[markup.highlight]
+# false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+noClasses = false
+
+[params]
+# date format
+dateFormat = "2006-01-02"
+# website title for Open Graph and Twitter Cards
+title = "Royalwood Neighbourhood Association"
+# website description for RSS, SEO, Open Graph and Twitter Cards
+description = "You can make a difference in your neighbourhood today."
+# website images for Open Graph and Twitter Cards
+images = []
+
+[params.section]
+dateFormat = "Jan 02"
+
+# Author config
+[params.author]
+name = "Royalwood Neighbourhood Association"
+email = ""
+link = ""
+
+# Header title config
+[params.header.title]
+# URL of the LOGO
+logo = ""
+# title name
+name = "RNA"
+# you can add extra information before the name (HTML format is supported), such as icons
+pre = ""
+# you can add extra information after the name (HTML format is supported), such as icons
+post = ""
+# whether to use typeit animation for title name
+typeit = false
+
+# Footer config
+[params.footer]
+enable = true
+# Custom content (HTML format is supported)
+custom = ""
+# whether to show Hugo and theme info
+hugo = false
+# whether to show copyright info
+copyright = true
+# whether to show the author
+author = true
+# site creation time
+since = 2023
+
+# App icon config
+[params.app]
+# optional site title override for the app when added to an iOS home screen or Android launcher
+title = "Royalwood Neighbourhood Association"
+# whether to omit favicon resource links
+noFavicon = false
+# modern SVG favicon to use in place of older style .png and .ico files
+svgFavicon = ""
+
+# Search config
+[params.search]
+enable = true
+# type of search engine ["lunr", "algolia"]
+type = "lunr"
+# max index length of the chunked content
+contentLength = 4000
+# placeholder of the search bar
+placeholder = ""
+# max number of results length
+maxResultLength = 10
+# snippet length of the result
+snippetLength = 30
+# HTML tag name of the highlight part in results
+highlightTag = "em"
+# whether to use the absolute URL based on the baseURL in search index
+absoluteURL = false
+[params.search.algolia]
+index = ""
+appID = ""
+searchKey = ""
+
+# Home page config
+[params.home]
+# amount of RSS pages
+rss = 10
+# Home page profile
+[params.home.profile]
+enable = true
+# Gravatar Email for preferred avatar in home page
+gravatarEmail = ""
+# URL of avatar shown in home page
+avatarURL = "images/rna-logo-large.png"
+# title shown in home page (HTML format is supported)
+title = ""
+# subtitle shown in home page (HTML format is supported)
+subtitle = "See what we're up to."
+# whether to use typeit animation for subtitle
+typeit = true
+# whether to show social links
+social = true
+# disclaimer (HTML format is supported)
+disclaimer = ""
+# Home page posts
+[params.home.posts]
+enable = true
+# special amount of posts in each home posts page
+paginate = 5
+# Social config in home page
+[params.social]
+# GitHub = "https://github.com/Royalwood-NA"
+Facebook = "RoyalwoodNA"
+Email = "info@RoyalwoodNA.org"
+RSS = ""
+
+# Social share links in post page
+[params.page.share]
+enable = false
+X = true
+Threads = true
+Facebook = true
+Linkedin = false
+Whatsapp = false
+Pinterest = false
+Tumblr = false
+HackerNews = false
+Reddit = true
+VK = false
+Buffer = false
+Xing = false
+Line = true
+Instapaper = false
+Pocket = false
+Flipboard = false
+Weibo = true
+Blogger = false
+Baidu = false
+Odnoklassniki = false
+Evernote = false
+Skype = false
+Trello = false
+Diaspora = true
+Mix = false
+Telegram = true
+# Comment config
+[params.page.comment]
+enable = false
+
+# Third-party library config
+[params.page.library]
+[params.page.library.css]
+# boardBioCss = "css/board.scss"
+[params.page.library.js]
+# someJavascript = "some.js"
+# located in "assets/"
+
+# Page SEO config
+[params.page.seo]
+# image URL
+images = []
+# Publisher info
+[params.page.seo.publisher]
+name = ""
+logoUrl = ""
+
+# TypeIt config
+[params.typeit]
+# typing speed between each step (measured in milliseconds)
+speed = 100
+# blinking speed of the cursor (measured in milliseconds)
+cursorSpeed = 1000
+# character used for the cursor (HTML format is supported)
+cursorChar = " "
+# cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited)
+duration = 1
+
+# Site verification code for Google/Bing/Yandex/Pinterest/Baidu
+[params.verification]
+google = ""
+bing = ""
+yandex = ""
+pinterest = ""
+baidu = ""
+
+# Site SEO config
+[params.seo]
+# image URL
+image = ""
+# thumbnail URL
+thumbnailUrl = ""
+
+# Analytics config
+[params.analytics]
+# Google Analytics
+[params.analytics.google]
+id = ""
+# whether to respect the browser’s “do not track” setting
+respectDoNotTrack = false
+# Fathom Analytics
+[params.analytics.fathom]
+id = ""
+# server url for your tracker if you're self hosting
+server = ""
+# Plausible Analytics
+[params.analytics.plausible]
+dataDomain = ""
+# Yandex Metrica
+[params.analytics.yandexMetrica]
+id = ""
+
+# Cookie consent config
+[params.cookieconsent]
+enable = false
+# text strings used for Cookie consent banner
+[params.cookieconsent.content]
+message = ""
+dismiss = ""
+link = ""
+
+# CDN config for third-party library files
+[params.cdn]
+# CDN data file name, disabled by default
+# ["jsdelivr.yml"]
+# located in "themes/LoveIt/assets/data/cdn/" directory
+# you can store your own data files in the same path under your project:
+# "assets/data/cdn/"
+data = "jsdelivr.yml"
+
+# Compatibility config
+[params.compatibility]
+# whether to use Polyfill.io to be compatible with older browsers
+polyfill = false
+# whether to use object-fit-images to be compatible with older browsers
+objectFit = false
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]

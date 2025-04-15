@@ -1,0 +1,38 @@
+bios:
+  - name: "Glen Cottick"
+    title: "Chair"
+    picture: "/images/board-bio-glen-cottick.jpg"
+    bio: >
+      Glen has resided on Norcross Cr. since 2001, relishing in the many quiet, natural spaces offered by the neighbourhood. He has held a number of board positions within industry, youth sport, and children's charities.
+  - name: "Anirudh Pathak"
+    title: "Vice-Chair"
+    bio: >
+      <Bio to be added>
+  - name: "Jim Clark"
+    title: "Treasurer"
+    picture: "/images/board-bio-jim-clark.jpg"
+    bio: >
+      Jim has lived in Royalwood since 2015, and appreciates the cooperation and friendship among his neighbours. He previously held a treasurer role with a Winnipeg charity.
+  - name: "Vacant"
+    title: "Secretary"
+  - name: "Miles Derco"
+    title: "Director"
+    picture: "/images/board-bio-miles-derco.jpg"
+    bio: >
+      Miles moved to Northport Bay in 2018 and immediately felt part of the community. Miles has owned and operated a business in Winnipeg for over 30 years and has extensive experience in overseeing projects. You can find Miles running the trail in Bois des Esprits in the warm weather and skiing the river in the winter.
+  - name: "Cory Crook"
+    title: "Director"
+    picture: "/images/board-bio-cory-crook.jpg"
+    bio: >
+      Cory and his family moved to Royalwood from Toronto in 2022 where they were immediately welcomed by genuine neighbours who quickly became good friends. Cory works as a software engineer, enjoys writing music, painting, woodworking, and spending time outdoors - especially with his family.
+  - name: "John Morris"
+    title: "Director"
+    picture: "/images/board-bio-john-morris.jpg"
+    bio: >
+      John has lived in Royalwood since 2015 and has enjoyed the community ever since. John has a strong background in environmental science policy and has worked with several national and provincial industrial relations associations.
+  - name: "Vacant"
+    title: "Director"
+  - name: "Vacant"
+    title: "Director"
+defaults:
+  vacantImg: "/images/board-bio-vacant.png"

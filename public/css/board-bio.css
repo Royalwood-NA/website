@@ -1,0 +1,7 @@
+.h-card person-mention {
+  display: flex;
+}
+
+.h-card person-mention > a {
+  flex-direction: column;
+}

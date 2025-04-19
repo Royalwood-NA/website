@@ -8,7 +8,7 @@ title = 'Community Cleanup'
 
 ### Caring community members, making a difference, together
 
-Please consider joining in with your neighbours to tidy up the community on **Saturday, May 4, 10am @ 2pm**.
+Please consider joining in with your neighbours to tidy up the community on **Sunday, May 4, 10am @ 2pm**.
 
 This is a great opportunity to enjoy the nice weather, get some exercise, meet up with your neighbours, and help spruce up out neighbourhood. Our past cleanup events have been well attended and the kids especially seem to enjoy them (great way to help build community spirit within our younger neighbours!).
 

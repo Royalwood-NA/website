@@ -4,10 +4,29 @@ draft = false
 title = 'Membership'
 +++
 
-## RNA Membership Has Its Privileges
+## Board Priorities
 
-The association acts in the interests of the entire community and does so through the direction provided by the membership. Residents within the community and businesses which serve the community can become members and vote on the ideas, issues, and opportunities that will be pursued by the association.
+The association acts in the interests of the entire community and does so through the direction provided by the membership. Residents within the community and businesses which serve the community can become members and vote on the projects, issues, and opportunities that will be pursued by the association. This ensures that members have an opportunity to shape Royalwood to become a neighbourhood that best represents their lifestyle and vision of community.
 
-The special introductory annual membership rates are **$25 for residents** and **$100 for businesses**. These special rates will be honoured for three years for anyone who becomes a member in 2023!
+## Membership Privileges
 
-We expect 2024 to be a very busy year as we start implementing the ideas that are most important to the community. We would encourage everyone to sign up for their membership today so they can benefit from the introductory rate and participate in the voting which will guide the actions of the association on their behalf.
+- Association voting rights
+- Raise issues directly to board
+
+## Membership Rates
+
+Association membership is priced at two rates:
+: **Residents** - $25 / year
+: **Businesses** - $100 / year
+
+{{< raw >}}
+<sub>Memberships started in 2023 will continue to have rates honoured for three years without raises</sub>
+{{< /raw >}}
+
+## Joining
+
+We 2025 is already busy year as we start implementing the projects that are most important to the community based on our last member survey. We would encourage everyone to sign up for their membership today so they can benefit from the introductory rate and participate in the voting which will guide the actions of the association on their behalf.
+
+{{< ctabutton href="/forms/rna-membership-signup" >}}
+Sign up
+{{< /ctabutton >}}

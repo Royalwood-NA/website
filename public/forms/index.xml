@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Forms on Royalwood Neighbourhood Association</title>
-    <link>http://localhost:1313/forms/</link>
+    <link>http://localhost:1313/website/forms/</link>
     <description>Recent content in Forms on Royalwood Neighbourhood Association</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Tue, 01 Apr 2025 12:00:00 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/forms/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/website/forms/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RNA Membership Signup Form</title>
-      <link>http://localhost:1313/forms/rna-membership-signup/</link>
+      <link>http://localhost:1313/website/forms/rna-membership-signup/</link>
       <pubDate>Tue, 01 Apr 2025 12:00:00 -0500</pubDate>
-      <guid>http://localhost:1313/forms/rna-membership-signup/</guid>
+      <guid>http://localhost:1313/website/forms/rna-membership-signup/</guid>
       <description>&lt;iframe&#xA;  class=&#34;google-form&#34;&#xA;  src=&#39;https://docs.google.com/forms/d/e/1FAIpQLSdR6e_wxr5apH6LjuCETeqnn-e1zhOluqyA1lOgfe-wsattwA/viewform?embedded=true&#39;&#xA;  style=&#34;border-style: none; overflow: hidden; width: 100%; height: 200vh&#34;&#xA;  onload=&#34;iframeReady()&#34;&#xA;  frameborder=&#34;0&#34;&#xA;  marginheight=&#34;0&#34;&#xA;  marginwidth=&#34;0&#34;&#xA;&gt;&#xA;  Loading…&#xA;&lt;/iframe&gt;</description>
     </item>
   </channel>

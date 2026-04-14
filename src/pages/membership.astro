@@ -1,40 +1,53 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const pageTitle = 'Membership';
-const pageDescription = 'Become a member of the Royalwood Neighbourhood Association. Your membership supports community programs, events, and advocacy for all Royalwood residents.';
+const pageTitle = "Membership";
+const pageDescription =
+  "Become a member of the Royalwood Neighbourhood Association. Your membership supports community programs, events, and advocacy for all Royalwood residents.";
 
 const benefits = [
   {
-    icon: '🗳️',
-    title: 'Have Your Voice Heard',
-    description: 'Members can vote at general meetings and help shape the direction of the RNA—your priorities become our priorities.',
+    icon: "🗳️",
+    title: "Have Your Voice Heard",
+    description:
+      "Members can vote at general meetings and help shape the direction of the RNA—your priorities become our priorities.",
   },
   {
-    icon: '🎉',
-    title: 'Access to Exclusive Events',
-    description: 'Get early access and member-only pricing for RNA-hosted events, workshops, and community gatherings throughout the year.',
+    icon: "🌱",
+    title: "Fund What Matters",
+    description:
+      "Your dues directly support programs like park clean-ups, safety initiatives, and community beautification projects.",
   },
   {
-    icon: '📰',
-    title: 'Stay in the Know',
-    description: 'Receive our member newsletter packed with neighbourhood news, city updates, and upcoming events before anyone else.',
+    icon: "🤝",
+    title: "Connect with Neighbours",
+    description:
+      "Build real relationships with the people who live around you through member meet-ups and volunteer opportunities.",
   },
   {
-    icon: '🌱',
-    title: 'Fund What Matters',
-    description: 'Your dues directly support programs like park clean-ups, safety initiatives, and community beautification projects.',
+    icon: "🏛️",
+    title: "Strengthen Advocacy",
+    description:
+      "A larger membership base gives the RNA a stronger voice when representing Royalwood to the City of Winnipeg.",
   },
-  {
-    icon: '🤝',
-    title: 'Connect with Neighbours',
-    description: 'Build real relationships with the people who live around you through member meet-ups and volunteer opportunities.',
-  },
-  {
-    icon: '🏛️',
-    title: 'Strengthen Advocacy',
-    description: 'A larger membership base gives the RNA a stronger voice when representing Royalwood to the City of Winnipeg.',
-  },
+];
+
+const householdBenefits = [
+  "Voting rights for neighbourhood initiatives",
+  "Member newsletter & early event access",
+  "Supports all RNA programs & events",
+  "Strengthens neighbourhood advocacy",
+];
+
+const businessBenefits = [
+  "Preferred visibility at events, in the community & online",
+  "Logo placement on website and print materials",
+  "Featured social media spotlight (monthly business feature)",
+  "Discounted event sponsorship opportunities",
+  "Recognition in the RNA newsletter (each issue)",
+  "Listing in the Royalwood Business Directory (online)",
+  "Priority networking opportunities at RNA events",
+  "Ability to post job listings in the newsletter",
 ];
 ---
 
@@ -44,7 +57,9 @@ const benefits = [
     <div class="container">
       <h1>Join the Royalwood Neighbourhood Association</h1>
       <p class="hero-lead">
-        Membership is the simplest, most impactful way to invest in the neighbourhood you call home. For just a small annual fee, you help keep Royalwood vibrant, safe, and connected.
+        Membership is the simplest, most impactful way to invest in the
+        neighbourhood you call home. For just a small annual fee, you help keep
+        Royalwood vibrant, safe, and connected.
       </p>
       <a href="#join" class="btn btn--hero">Become a Member Today</a>
     </div>
@@ -53,31 +68,70 @@ const benefits = [
   <!-- Why Membership Matters -->
   <section class="section">
     <div class="container">
-      <div class="why-grid">
-        <div class="why-text">
-          <h2>Why Membership Matters</h2>
-          <p>
-            The Royalwood Neighbourhood Association is an entirely volunteer-run, non-profit organization. We don't receive ongoing government funding—our programs, events, and advocacy efforts are sustained by the generous dues paid by members like you.
-          </p>
-          <p>
-            When you become a member, you're not just supporting an organization. You're investing in better parks, safer streets, stronger community ties, and a neighbourhood that actively represents your interests at City Hall.
-          </p>
-          <p>
-            Every household that joins makes the RNA more effective. Help us reach every resident in Royalwood.
-          </p>
-        </div>
-        <div class="membership-card card">
+      <div class="why-text">
+        <h2>Why Membership Matters</h2>
+        <p>
+          The Royalwood Neighbourhood Association is an entirely volunteer-run,
+          non-profit organization. We don't receive ongoing government
+          funding—our programs, events, and advocacy efforts are sustained by
+          the generous dues paid by members like you.
+        </p>
+        <p>
+          When you become a member, you're not just supporting an organization.
+          You're investing in better parks, safer streets, stronger community
+          ties, and a neighbourhood that actively represents your interests at
+          City Hall.
+        </p>
+        <p>
+          Every household that joins makes the RNA more effective. Help us reach
+          every resident in Royalwood.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Choose Your Membership Tiers -->
+  <section class="section tiers-section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--space-4);">
+        Choose Your Membership
+      </h2>
+      <p
+        class="tiers-subtitle"
+        style="text-align: center; margin-bottom: var(--space-12); color: var(--color-text-muted);"
+      >
+        Whether you're an individual household or a local business, we have a
+        membership tier that's right for you.
+      </p>
+      <div class="tiers-grid">
+        <!-- Household Membership Card -->
+        <div class="tier-card card">
           <div class="card__body">
-            <div class="membership-price-label">Annual Household Membership</div>
-            <div class="membership-price">$20</div>
-            <div class="membership-price-note">per household / year</div>
-            <ul class="membership-includes">
-              <li>Voting rights at general meetings</li>
-              <li>Member newsletter & early event access</li>
-              <li>Supports all RNA programs & events</li>
-              <li>Strengthens neighbourhood advocacy</li>
+            <div class="tier-label">Household</div>
+            <div class="tier-price">$25</div>
+            <div class="tier-price-note">per household / year</div>
+            <ul class="tier-includes">
+              {householdBenefits.map((benefit) => <li>{benefit}</li>)}
             </ul>
-            <a href="#join" class="btn btn--primary" style="width: 100%; text-align: center;">Join Now</a>
+            <a href="#join" class="btn btn--primary tier-btn"
+              >Join as Household</a
+            >
+          </div>
+        </div>
+
+        <!-- Business Membership Card — FEATURED -->
+        <div class="tier-card tier-card--business card">
+          <div class="tier-badge">★ Business Premium</div>
+          <div class="card__body">
+            <div class="tier-label business-label">Business</div>
+            <div class="tier-price business-price">$100</div>
+            <div class="tier-price-note">per business / year</div>
+            <ul class="tier-includes">
+              {businessBenefits.map((benefit) => <li>{benefit}</li>)}
+            </ul>
+            <a href="#join" class="btn btn--business tier-btn"
+              >Join as a Business</a
+            >
           </div>
         </div>
       </div>
@@ -87,17 +141,21 @@ const benefits = [
   <!-- Benefits Section -->
   <section class="section benefits-section">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--space-12);">What You Get as a Member</h2>
+      <h2 style="text-align: center; margin-bottom: var(--space-12);">
+        What You Get as a Member
+      </h2>
       <div class="benefits-grid">
-        {benefits.map((benefit) => (
-          <div class="benefit-card card">
-            <div class="card__body">
-              <div class="benefit-icon">{benefit.icon}</div>
-              <h3>{benefit.title}</h3>
-              <p>{benefit.description}</p>
+        {
+          benefits.map((benefit) => (
+            <div class="benefit-card card">
+              <div class="card__body">
+                <div class="benefit-icon">{benefit.icon}</div>
+                <h3>{benefit.title}</h3>
+                <p>{benefit.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
@@ -105,37 +163,97 @@ const benefits = [
   <!-- CTA / Join Section -->
   <section class="section join-section" id="join">
     <div class="container container--narrow">
-      <h2 style="text-align: center; margin-bottom: var(--space-4);">Ready to Join?</h2>
-      <p style="text-align: center; margin-bottom: var(--space-10); color: var(--color-text-muted);">
-        Membership is open to all households within the Royalwood neighbourhood. Fill out the form below and we'll be in touch with payment instructions. It only takes a minute.
+      <h2 style="text-align: center; margin-bottom: var(--space-4);">
+        Ready to Join?
+      </h2>
+      <p
+        style="text-align: center; margin-bottom: var(--space-10); color: var(--color-text-muted);"
+      >
+        Membership is open to all households and businesses within the Royalwood
+        neighbourhood. Fill out the form below and we'll be in touch with
+        payment instructions. It only takes a minute.
       </p>
 
-      <form class="join-form" action="https://formspree.io/f/placeholder" method="POST">
+      <form
+        class="join-form"
+        action="https://formspree.io/f/placeholder"
+        method="POST"
+      >
         <div class="form-row">
           <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first_name" placeholder="Jane" required />
+            <input
+              type="text"
+              id="first-name"
+              name="first_name"
+              placeholder="Jane"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last_name" placeholder="Smith" required />
+            <input
+              type="text"
+              id="last-name"
+              name="last_name"
+              placeholder="Smith"
+              required
+            />
           </div>
         </div>
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="jane@example.com"
+            required
+          />
         </div>
         <div class="form-group">
-          <label for="address">Home Address (Royalwood)</label>
-          <input type="text" id="address" name="address" placeholder="123 Royalwood Dr" required />
+          <label for="membership-type">Membership Type</label>
+          <select id="membership-type" name="membership_type" required>
+            <option value="">Select a membership type...</option>
+            <option value="household">Household Membership — $20/year</option>
+            <option value="business">Business Membership — $100/year</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="message">Anything you'd like us to know? (optional)</label>
-          <textarea id="message" name="message" rows="3" placeholder="Areas of interest, questions, etc."></textarea>
+          <label for="address">Address (Royalwood area)</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="123 Royalwood Dr or Business Address"
+            required
+          />
         </div>
-        <button type="submit" class="btn btn--primary btn--full">Submit Membership Application</button>
+        <div class="form-group">
+          <label for="business-name">Business Name (if applicable)</label>
+          <input
+            type="text"
+            id="business-name"
+            name="business_name"
+            placeholder="Royalwood Roofing Co."
+          />
+        </div>
+        <div class="form-group">
+          <label for="message">Anything you'd like us to know? (optional)</label
+          >
+          <textarea
+            id="message"
+            name="message"
+            rows="3"
+            placeholder="Areas of interest, questions, etc."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full"
+          >Submit Membership Application</button
+        >
         <p class="form-disclaimer">
-          After submitting, we'll send you payment instructions within 1–2 business days. Annual dues are $20 per household.
+          After submitting, we'll send you payment instructions within 1–2
+          business days. Household dues are $20/year; Business membership is
+          $100/year.
         </p>
       </form>
     </div>
@@ -145,7 +263,7 @@ const benefits = [
 <style scoped>
   /* Hero Section */
   .hero {
-    background: linear-gradient(135deg, var(--color-accent) 0%, #1B4D3A 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, #1b4d3a 100%);
     color: white;
     padding: var(--space-20) 0;
     text-align: center;
@@ -184,11 +302,9 @@ const benefits = [
   }
 
   /* Why Membership Section */
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
-    align-items: start;
+  .why-text {
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .why-text h2 {
@@ -205,27 +321,81 @@ const benefits = [
     margin-bottom: 0;
   }
 
-  /* Membership Price Card */
-  .membership-card {
-    position: sticky;
-    top: var(--space-8);
+  /* Membership Tiers Section */
+  .tiers-section {
+    background: var(--color-surface-alt);
   }
 
-  .membership-card .card__body {
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-10);
+  }
+
+  .tier-card {
+    position: relative;
+    transition: all var(--transition);
+  }
+
+  .tier-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .tier-card.card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tier-card .card__body {
     text-align: center;
     padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
-  .membership-price-label {
+  /* Business Premium Card */
+  .tier-card--business {
+    border-top: 4px solid #b8860b;
+    background: linear-gradient(
+      135deg,
+      rgba(184, 134, 11, 0.08) 0%,
+      transparent 100%
+    );
+  }
+
+  .tier-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #b8860b;
+    color: white;
+    padding: var(--space-2) var(--space-6);
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .tier-label {
     font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--color-accent);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-2);
+    margin-top: var(--space-4);
   }
 
-  .membership-price {
+  .tier-label.business-label {
+    color: #b8860b;
+  }
+
+  .tier-price {
     font-size: 4rem;
     font-weight: 800;
     font-family: var(--font-serif);
@@ -234,13 +404,17 @@ const benefits = [
     margin-bottom: var(--space-2);
   }
 
-  .membership-price-note {
+  .tier-price.business-price {
+    color: #b8860b;
+  }
+
+  .tier-price-note {
     font-size: 0.9rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-8);
   }
 
-  .membership-includes {
+  .tier-includes {
     list-style: none;
     padding: 0;
     margin: 0 0 var(--space-8);
@@ -248,22 +422,55 @@ const benefits = [
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
+    flex-grow: 1;
   }
 
-  .membership-includes li {
+  .tier-includes li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-3);
     color: var(--color-text);
     font-size: 0.95rem;
   }
 
-  .membership-includes li::before {
-    content: '✓';
+  .tier-includes li::before {
+    content: "✓";
     color: var(--color-accent);
     font-weight: 700;
     font-size: 1rem;
     flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tier-card--business .tier-includes li::before {
+    color: #b8860b;
+  }
+
+  .tier-btn {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .btn--business {
+    background: #b8860b;
+    color: white;
+    border: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    transition: all var(--transition);
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .btn--business:hover {
+    background: #9a7409;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 
   /* Benefits Section */
@@ -273,8 +480,8 @@ const benefits = [
 
   .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-8);
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
   }
 
   .benefit-card .card__body {
@@ -336,7 +543,8 @@ const benefits = [
   }
 
   .form-group input,
-  .form-group textarea {
+  .form-group textarea,
+  .form-group select {
     padding: var(--space-3) var(--space-4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
@@ -349,7 +557,8 @@ const benefits = [
   }
 
   .form-group input:focus,
-  .form-group textarea:focus {
+  .form-group textarea:focus,
+  .form-group select:focus {
     outline: none;
     border-color: var(--color-accent);
     box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
@@ -360,9 +569,19 @@ const benefits = [
     color: var(--color-text-muted);
   }
 
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 1.5em 1.5em;
+    padding-right: var(--space-10);
+  }
+
   .btn--full {
     width: 100%;
     text-align: center;
+    display: inline-block;
   }
 
   .form-disclaimer {
@@ -374,12 +593,17 @@ const benefits = [
 
   /* Responsive Design */
   @media (max-width: 900px) {
-    .why-grid {
+    .tiers-grid {
       grid-template-columns: 1fr;
+      gap: var(--space-8);
     }
 
-    .membership-card {
+    .tier-badge {
+      top: var(--space-4);
       position: static;
+      transform: none;
+      width: fit-content;
+      margin: 0 auto var(--space-4);
     }
 
     .benefits-grid {
@@ -398,6 +622,19 @@ const benefits = [
 
     .hero-lead {
       font-size: 1rem;
+    }
+
+    .tiers-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .tier-card .card__body {
+      padding: var(--space-6);
+    }
+
+    .tier-price {
+      font-size: 3rem;
     }
 
     .benefits-grid {

@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getCollection } from 'astro:content';
+
+const PER_PAGE = 6;
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));
+const currentPage = 1;
+const posts = allPosts.slice(0, PER_PAGE);
+
+// Collect all unique tags
+const allTags = [...new Set(allPosts.flatMap(p => p.data.tags ?? []))].sort();
+---
+
+<BaseLayout
+  title="Blog"
+  description="News, updates, and announcements from the Royalwood Neighbourhood Association."
+>
+  <!-- Page header -->
+  <div style="background:linear-gradient(135deg,var(--color-teal-dark),#0f766e);color:#fff;padding:3.5rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h1 style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;margin:0 0 0.75rem;color:#fff;">Blog</h1>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.85);margin:0;line-height:1.6;">
+        Community updates, event recaps, and announcements from the RNA.
+      </p>
+    </div>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:3rem 1.5rem;">
+
+    <!-- Tag filter -->
+    {allTags.length > 0 && (
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;">
+        <span style="font-size:0.8rem;font-weight:600;color:var(--color-muted);align-self:center;margin-right:0.25rem;">Filter:</span>
+        {allTags.map(tag => (
+          <a
+            href={`/blog/tag/${tag}`}
+            style="font-size:0.75rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;background:var(--color-surface);border:1px solid var(--color-border);color:var(--color-text);padding:0.3rem 0.75rem;border-radius:9999px;text-decoration:none;transition:background 0.15s,color 0.15s;"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    )}
+
+    <!-- Post grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;" data-pagefind-ignore>
+      {posts.map(post => (
+        <BlogCard
+          title={post.data.title}
+          pubDate={post.data.pubDate}
+          author={post.data.author}
+          description={post.data.description}
+          tags={post.data.tags}
+          slug={post.id}
+        />
+      ))}
+    </div>
+
+    <Pagination currentPage={currentPage} totalPages={totalPages} basePath="/blog" />
+  </div>
+</BaseLayout>

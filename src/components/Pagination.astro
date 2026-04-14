@@ -1,0 +1,60 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  basePath: string;
+}
+
+const { currentPage, totalPages, basePath } = Astro.props;
+
+const prevHref = currentPage > 1
+  ? currentPage === 2 ? basePath : `${basePath}/${currentPage - 1}`
+  : null;
+const nextHref = currentPage < totalPages ? `${basePath}/${currentPage + 1}` : null;
+---
+
+{totalPages > 1 && (
+  <nav aria-label="Pagination" style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+    {prevHref ? (
+      <a
+        href={prevHref}
+        style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;border:1px solid var(--color-border);border-radius:var(--radius);font-size:0.875rem;font-weight:500;text-decoration:none;color:var(--color-text);background:var(--color-surface);transition:border-color 0.15s,color 0.15s;"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Previous
+      </a>
+    ) : (
+      <span style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;border:1px solid var(--color-border);border-radius:var(--radius);font-size:0.875rem;font-weight:500;color:var(--color-muted);background:var(--color-bg);cursor:not-allowed;opacity:0.5;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Previous
+      </span>
+    )}
+
+    <span style="font-size:0.875rem;color:var(--color-muted);">
+      Page {currentPage} of {totalPages}
+    </span>
+
+    {nextHref ? (
+      <a
+        href={nextHref}
+        style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;border:1px solid var(--color-border);border-radius:var(--radius);font-size:0.875rem;font-weight:500;text-decoration:none;color:var(--color-text);background:var(--color-surface);transition:border-color 0.15s,color 0.15s;"
+      >
+        Next
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </a>
+    ) : (
+      <span style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;border:1px solid var(--color-border);border-radius:var(--radius);font-size:0.875rem;font-weight:500;color:var(--color-muted);background:var(--color-bg);cursor:not-allowed;opacity:0.5;">
+        Next
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </span>
+    )}
+  </nav>
+)}

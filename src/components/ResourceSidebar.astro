@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  currentSlug?: string;
+}
+
+const { currentSlug } = Astro.props;
+
+// Fetch and sort all resource entries
+const allResources = await getCollection('resources');
+allResources.sort((a, b) => a.data.order - b.data.order);
+
+// Group by category preserving order of first appearance
+const categoryOrder: string[] = [];
+const grouped: Record<string, typeof allResources> = {};
+
+for (const entry of allResources) {
+  const cat = entry.data.category;
+  if (!grouped[cat]) {
+    grouped[cat] = [];
+    categoryOrder.push(cat);
+  }
+  grouped[cat].push(entry);
+}
+---
+
+<aside aria-label="Resources navigation" style="width:260px;flex-shrink:0;">
+  <div style="position:sticky;top:80px;max-height:calc(100vh - 100px);overflow-y:auto;padding-right:0.5rem;">
+    <nav>
+      {categoryOrder.map(category => (
+        <div style="margin-bottom:1.5rem;">
+          <h3 style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-muted);margin:0 0 0.5rem;padding:0 0.5rem;">
+            {category}
+          </h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.1rem;">
+            {grouped[category].map(entry => {
+              const isActive = currentSlug === entry.id;
+              return (
+                <li>
+                  <a
+                    href={`/resources/${entry.id}`}
+                    aria-current={isActive ? 'page' : undefined}
+                    style={`
+                      display:block;padding:0.45rem 0.75rem;
+                      font-size:0.875rem;text-decoration:none;transition:background 0.15s,color 0.15s;
+                      color:${isActive ? 'var(--color-teal)' : 'var(--color-text)'};
+                      background:${isActive ? 'rgba(13,148,136,0.1)' : 'transparent'};
+                      font-weight:${isActive ? '600' : '400'};
+                      border-left:${isActive ? '2px solid var(--color-teal)' : '2px solid transparent'};
+                      border-radius:0 var(--radius) var(--radius) 0;
+                    `}
+                  >
+                    {entry.data.title}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  </div>
+</aside>

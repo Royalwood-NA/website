@@ -1,0 +1,526 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Get all non-draft events
+const allEvents = await getCollection('events', ({ data }) => !data.draft);
+
+// Get today's date for comparison
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+// Split events into upcoming and past
+const upcomingEvents = allEvents
+  .filter(event => {
+    const eventDate = new Date(event.data.eventDate);
+    eventDate.setHours(0, 0, 0, 0);
+    return eventDate >= today;
+  })
+  .sort((a, b) => a.data.eventDate.getTime() - b.data.eventDate.getTime());
+
+const pastEvents = allEvents
+  .filter(event => {
+    const eventDate = new Date(event.data.eventDate);
+    eventDate.setHours(0, 0, 0, 0);
+    return eventDate < today;
+  })
+  .sort((a, b) => b.data.eventDate.getTime() - a.data.eventDate.getTime());
+
+// Helper function to format date for badge
+function formatDateBadge(date: Date) {
+  return {
+    month: date.toLocaleDateString('en-CA', { month: 'short' }).toUpperCase(),
+    day: date.getDate().toString(),
+  };
+}
+
+// Helper function to format time
+function formatTime(date: Date) {
+  return date.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true });
+}
+
+// Helper function to get category badge color
+function getCategoryColor(category: string) {
+  const colors: Record<string, string> = {
+    community: 'badge--accent',
+    meeting: 'badge--accent',
+    social: 'badge--highlight',
+    cleanup: 'badge--accent',
+    sport: 'badge--highlight',
+    other: 'badge--neutral',
+  };
+  return colors[category] || 'badge--neutral';
+}
+
+// Helper function to format category display
+function formatCategory(category: string) {
+  return category.charAt(0).toUpperCase() + category.slice(1);
+}
+---
+
+<BaseLayout
+  title="Community Events"
+  description="Upcoming events and gatherings in the Royalwood neighbourhood."
+>
+  <div class="events-page">
+    <!-- Page Hero -->
+    <section class="events-hero section--lg">
+      <div class="container">
+        <h1 class="events-hero__title">Community Events</h1>
+        <p class="events-hero__subtitle">
+          Stay connected with what's happening in Royalwood.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section">
+      <div class="container">
+        <!-- Upcoming Events -->
+        <div class="events-section">
+          <h2 class="events-section__title">Upcoming Events</h2>
+
+          {upcomingEvents.length === 0 ? (
+            <div class="events-empty">
+              <p class="events-empty__message">
+                No upcoming events — check back soon!
+              </p>
+              <a href="/contact" class="btn btn--secondary btn--sm">
+                Suggest an event →
+              </a>
+            </div>
+          ) : (
+            <div class="events-list">
+              {upcomingEvents.map((event) => {
+                const { month, day } = formatDateBadge(event.data.eventDate);
+                const startTime = formatTime(event.data.eventDate);
+
+                return (
+                  <article class="event-card card">
+                    <div class="event-card__header">
+                      <div class="event-card__date-badge">
+                        <div class="date-badge">
+                          <div class="date-badge__month">{month}</div>
+                          <div class="date-badge__day">{day}</div>
+                        </div>
+                      </div>
+                      <div class="event-card__badges">
+                        <span class={`badge ${getCategoryColor(event.data.category)}`}>
+                          {formatCategory(event.data.category)}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="card__body event-card__body">
+                      <h3 class="event-card__title">
+                        <a href={`/events/${event.slug}`}>
+                          {event.data.title}
+                        </a>
+                      </h3>
+
+                      <p class="event-card__description">
+                        {event.data.description}
+                      </p>
+
+                      <div class="event-card__meta">
+                        <div class="event-card__time-location">
+                          <p class="event-card__time">
+                            <strong>Time:</strong> {startTime}
+                            {event.data.endDate && (
+                              <>
+                                {' '}–{' '}
+                                {formatTime(event.data.endDate)}
+                              </>
+                            )}
+                          </p>
+                          <p class="event-card__location">
+                            <strong>Location:</strong> {event.data.location}
+                          </p>
+                        </div>
+
+                        {event.data.registration && (
+                          <a
+                            href={event.data.registration}
+                            class="btn btn--primary btn--sm"
+                          >
+                            Register →
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <!-- Past Events -->
+        {pastEvents.length > 0 && (
+          <div class="events-section events-section--past">
+            <h2 class="events-section__title">Past Events</h2>
+
+            <div class="past-events-list">
+              {pastEvents.map((event) => {
+                const { month, day } = formatDateBadge(event.data.eventDate);
+
+                return (
+                  <div key={event.slug} class="past-event">
+                    <div class="past-event__date">
+                      <div class="date-badge date-badge--compact">
+                        <div class="date-badge__month">{month}</div>
+                        <div class="date-badge__day">{day}</div>
+                      </div>
+                    </div>
+
+                    <div class="past-event__content">
+                      <h4 class="past-event__title">
+                        <a href={`/events/${event.slug}`}>
+                          {event.data.title}
+                        </a>
+                      </h4>
+                      <p class="past-event__location">
+                        {event.data.location}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        <!-- CTA -->
+        {upcomingEvents.length > 0 && (
+          <div class="events-cta">
+            <p>Don't see what you're looking for?</p>
+            <a href="/contact" class="btn btn--highlight">
+              Suggest an event →
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .events-hero {
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-pale) 0%,
+      var(--color-surface-alt) 100%
+    );
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .events-hero__title {
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  .events-hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* Events Section */
+  .events-section {
+    margin-bottom: var(--space-20);
+  }
+
+  .events-section__title {
+    margin-bottom: var(--space-8);
+    color: var(--color-text);
+  }
+
+  .events-section--past {
+    margin-bottom: var(--space-12);
+  }
+
+  /* Events List */
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  /* Event Card */
+  .event-card {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .event-card__header {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    padding: var(--space-6);
+    background: var(--color-surface-alt);
+    min-width: 120px;
+  }
+
+  .event-card__date-badge {
+    display: flex;
+    justify-content: center;
+  }
+
+  .event-card__badges {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+  }
+
+  .event-card__body {
+    flex: 1;
+  }
+
+  .event-card__title {
+    margin-top: 0;
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .event-card__title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .event-card__title a:hover {
+    color: var(--color-accent);
+  }
+
+  .event-card__description {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .event-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-6);
+  }
+
+  .event-card__time-location {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .event-card__time,
+  .event-card__location {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Date Badge */
+  .date-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    padding: var(--space-3) var(--space-2);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
+
+  .date-badge__month {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .date-badge__day {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .date-badge--compact {
+    width: 60px;
+    padding: var(--space-2) var(--space-1);
+  }
+
+  .date-badge--compact .date-badge__month {
+    font-size: 0.65rem;
+  }
+
+  .date-badge--compact .date-badge__day {
+    font-size: 1.375rem;
+  }
+
+  /* Past Events List */
+  .past-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .past-event {
+    display: flex;
+    gap: var(--space-6);
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition);
+  }
+
+  .past-event:hover {
+    background: var(--color-surface-alt);
+  }
+
+  .past-event__date {
+    display: flex;
+    justify-content: center;
+    min-width: 70px;
+  }
+
+  .past-event__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .past-event__title {
+    margin: 0 0 var(--space-2) 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+  }
+
+  .past-event__title a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .past-event__title a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .past-event__location {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-text-subtle);
+  }
+
+  /* Empty State */
+  .events-empty {
+    text-align: center;
+    padding: var(--space-12) var(--space-6);
+    background: var(--color-surface-alt);
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--color-border);
+  }
+
+  .events-empty__message {
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  /* CTA Section */
+  .events-cta {
+    text-align: center;
+    padding: var(--space-12) var(--space-6);
+    background: var(--color-highlight-pale);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .events-cta p {
+    margin-bottom: var(--space-4);
+    color: var(--color-text);
+    font-size: 1.0625rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .event-card {
+      flex-direction: column;
+    }
+
+    .event-card__header {
+      flex-direction: row;
+      padding: var(--space-4);
+      background: var(--color-surface-alt);
+      gap: var(--space-4);
+    }
+
+    .event-card__badges {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .event-card__meta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .event-card__time-location {
+      width: 100%;
+    }
+
+    .past-event {
+      flex-direction: column;
+      gap: var(--space-3);
+      align-items: flex-start;
+    }
+
+    .past-event__date {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .events-hero__title {
+      font-size: 2rem;
+    }
+
+    .events-section__title {
+      font-size: 1.5rem;
+    }
+
+    .event-card__header {
+      padding: var(--space-3);
+    }
+
+    .event-card__body {
+      padding: var(--space-4);
+    }
+
+    .event-card__meta {
+      gap: var(--space-4);
+    }
+
+    .past-event {
+      padding: var(--space-3);
+      gap: var(--space-3);
+    }
+
+    .past-event__title {
+      font-size: 1rem;
+    }
+
+    .events-cta {
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .events-cta p {
+      font-size: 1rem;
+    }
+  }
+</style>

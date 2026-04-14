@@ -1,9 +1,0 @@
-[
-  { "name": "Maria Kowalski",   "role": "President" },
-  { "name": "Simon Théberge",   "role": "Vice President" },
-  { "name": "Anh Nguyen",       "role": "Treasurer" },
-  { "name": "Debra Friesen",    "role": "Secretary" },
-  { "name": "James Okafor",     "role": "Director at Large" },
-  { "name": "Ravi Patel",       "role": "Director at Large" },
-  { "name": "Louise Chartrand", "role": "Director at Large" }
-]

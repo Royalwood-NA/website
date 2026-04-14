@@ -1,9 +1,0 @@
----
-import { getCollection } from 'astro:content';
-
-const resources = await getCollection('resources');
-resources.sort((a, b) => a.data.order - b.data.order);
-
-// Redirect to the first resource
-return Astro.redirect(`/resources/${resources[0].id}`, 307);
----

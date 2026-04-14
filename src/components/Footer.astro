@@ -1,0 +1,208 @@
+---
+const year = new Date().getFullYear();
+
+const links = {
+  'Quick Links': [
+    { href: '/',             label: 'Home' },
+    { href: '/about',        label: 'About RNA' },
+    { href: '/blog',         label: 'News & Updates' },
+    { href: '/events',       label: 'Events' },
+  ],
+  'Resources': [
+    { href: '/resources',             label: 'All Resources' },
+    { href: '/resources/bylaws',      label: 'Bylaws & Governance' },
+    { href: '/resources/guides',      label: 'Resident Guides' },
+    { href: '/resources/minutes',     label: 'Meeting Minutes' },
+  ],
+  'Community': [
+    { href: '/get-involved', label: 'Get Involved' },
+    { href: '/contact',      label: 'Contact Us' },
+  ],
+};
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <a href="/" class="footer-wordmark" aria-label="Royalwood Neighbourhood Association">
+          <span class="footer-badge">RNA</span>
+          <span>
+            <strong>Royalwood</strong><br />
+            <small>Neighbourhood Association</small>
+          </span>
+        </a>
+        <p class="footer-tagline">
+          Building a stronger community in Royalwood, Edmonton — one neighbour at a time.
+        </p>
+        <address class="footer-address">
+          Royalwood, Edmonton, AB<br />
+          <a href="mailto:info@royalwoodna.org">info@royalwoodna.org</a>
+        </address>
+      </div>
+
+      <!-- Link columns -->
+      {Object.entries(links).map(([heading, items]) => (
+        <div class="footer-col">
+          <h3 class="footer-col__heading">{heading}</h3>
+          <ul class="footer-col__list" role="list">
+            {items.map(item => (
+              <li><a href={item.href} class="footer-col__link">{item.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; {year} Royalwood Neighbourhood Association. All rights reserved.
+      </p>
+      <p class="footer-city">
+        Proudly serving the Royalwood community, Edmonton, Alberta
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background: var(--color-text);
+  color: rgba(255,255,255,0.75);
+  padding-block: var(--space-16) var(--space-8);
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: var(--space-10);
+  margin-bottom: var(--space-12);
+}
+
+/* Brand */
+.footer-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: white;
+  margin-bottom: var(--space-4);
+}
+
+.footer-badge {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--color-accent);
+  color: white;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footer-wordmark strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: white;
+}
+
+.footer-wordmark small {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+  max-width: 280px;
+}
+
+.footer-address {
+  font-style: normal;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.footer-address a {
+  color: var(--color-accent-light);
+}
+
+.footer-address a:hover {
+  color: white;
+}
+
+/* Link columns */
+.footer-col__heading {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: var(--space-4);
+}
+
+.footer-col__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-col__link {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-col__link:hover {
+  color: white;
+}
+
+/* Bottom bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.footer-copy,
+.footer-city {
+  font-size: 0.8125rem;
+  opacity: 0.55;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>

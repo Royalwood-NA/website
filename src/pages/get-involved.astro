@@ -1,0 +1,432 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = 'Get Involved';
+const pageDescription = 'Discover ways to get involved with the Royalwood Neighbourhood Association. Volunteer, join the board, or support our community!';
+
+const involvementWays = [
+  {
+    icon: '🏛️',
+    title: 'Join the Board',
+    description:
+      'Help lead our community by becoming a board member. We seek dedicated residents to serve as President, Vice President, Secretary, Treasurer, and various directors.',
+    buttonText: 'Apply Now',
+    buttonLink: '/contact',
+  },
+  {
+    icon: '🎉',
+    title: 'Volunteer at Events',
+    description:
+      'Get hands-on by helping us organize and run community events throughout the year. No experience necessary—just bring enthusiasm!',
+    buttonText: 'Express Interest',
+    buttonLink: '/contact',
+  },
+  {
+    icon: '👥',
+    title: 'Join a Committee',
+    description:
+      'Work with like-minded neighbours on our Environment, Safety, Social, or Communications committees. Make a direct impact on community priorities.',
+    buttonText: 'Learn More',
+    buttonLink: '/contact',
+  },
+  {
+    icon: '📢',
+    title: 'Spread the Word',
+    description:
+      'Help us grow by sharing information about the RNA with your neighbours. The more residents who know about us, the stronger our community becomes.',
+    buttonText: 'Share This Site',
+    buttonLink: '#',
+  },
+];
+
+const opportunities = [
+  {
+    role: 'Event Coordinator',
+    commitment: '3-5 hrs/month',
+    description: 'Help plan and coordinate community events, manage logistics, and engage residents.',
+  },
+  {
+    role: 'Social Media Manager',
+    commitment: '2-3 hrs/month',
+    description: 'Share community news, photos, and updates across our social media platforms.',
+  },
+  {
+    role: 'Green Space Champion',
+    commitment: '2 hrs/month',
+    description: 'Help organize tree planting, park clean-ups, and environmental initiatives.',
+  },
+  {
+    role: 'Community Outreach',
+    commitment: '2-4 hrs/month',
+    description: 'Connect with residents, gather feedback, and represent the RNA at neighbourhood events.',
+  },
+];
+
+const stats = [
+  {
+    number: '500+',
+    label: 'Households Represented',
+  },
+  {
+    number: '12',
+    label: 'Events per Year',
+  },
+  {
+    number: '50+',
+    label: 'Active Volunteers',
+  },
+  {
+    number: '20+',
+    label: 'Years of Service',
+  },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Make a Difference in Royalwood</h1>
+      <p class="hero-lead">
+        Join us in building a vibrant, connected community. Whether you want to volunteer, lead, or simply stay informed, there's a role for you in the RNA.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ways to Get Involved -->
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--space-12);">Ways to Get Involved</h2>
+      <div class="involvement-grid">
+        {involvementWays.map((way) => (
+          <div class="involvement-card card">
+            <div class="card__body">
+              <div class="involvement-icon">{way.icon}</div>
+              <h3>{way.title}</h3>
+              <p>{way.description}</p>
+              {way.buttonLink !== '#' ? (
+                <a href={way.buttonLink} class="btn btn--primary btn--sm">
+                  {way.buttonText}
+                </a>
+              ) : (
+                <button class="btn btn--secondary btn--sm" onclick="navigator.share({title: 'Royalwood Neighbourhood Association', url: window.location.origin})">
+                  {way.buttonText}
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Current Opportunities Section -->
+  <section class="section opportunities-section">
+    <div class="container">
+      <h2 style="margin-bottom: var(--space-8);">Current Volunteer Opportunities</h2>
+      <p style="margin-bottom: var(--space-8); color: var(--color-text-muted);">
+        We have several active volunteer roles available right now. Explore these opportunities and find something that fits your schedule and interests!
+      </p>
+
+      <div class="opportunities-list">
+        {opportunities.map((opp, index) => (
+          <div class="opportunity-item" key={index}>
+            <div class="opportunity-header">
+              <h3 class="opportunity-role">{opp.role}</h3>
+              <span class="opportunity-commitment">{opp.commitment}</span>
+            </div>
+            <p class="opportunity-description">{opp.description}</p>
+            <a href="/contact" class="btn btn--secondary btn--sm">Sign Up</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Signup Section -->
+  <section class="section newsletter-section">
+    <div class="container container--narrow">
+      <h2 style="text-align: center; margin-bottom: var(--space-4);">Stay Updated</h2>
+      <p style="text-align: center; margin-bottom: var(--space-8); color: var(--color-text-muted);">
+        Subscribe to our newsletter to stay informed about upcoming events, community news, and volunteer opportunities.
+      </p>
+
+      <form class="newsletter-form" action="https://formspree.io/f/placeholder" method="POST">
+        <div class="newsletter-input-group">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email address"
+            required
+          />
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </div>
+        <p class="newsletter-disclaimer" style="text-align: center; font-size: 0.85rem; margin-top: var(--space-4);">
+          We respect your privacy. Unsubscribe at any time.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Community Impact Stats -->
+  <section class="section stats-section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--space-12);">Our Impact</h2>
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <div class="stat-box">
+            <div class="stat-number">{stat.number}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style scoped>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #1B4D3A 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: white;
+    margin-bottom: var(--space-6);
+    font-size: clamp(2rem, 6vw, 3.5rem);
+  }
+
+  .hero-lead {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Involvement Cards Grid */
+  .involvement-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+
+  .involvement-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .involvement-card .card__body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .involvement-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-4);
+    display: inline-block;
+  }
+
+  .involvement-card h3 {
+    margin-bottom: var(--space-4);
+    color: var(--color-accent);
+  }
+
+  .involvement-card p {
+    flex-grow: 1;
+    margin-bottom: var(--space-6);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .involvement-card .btn {
+    align-self: flex-start;
+  }
+
+  /* Opportunities Section */
+  .opportunities-section {
+    background: var(--color-surface-alt);
+  }
+
+  .opportunities-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .opportunity-item {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    transition: all var(--transition);
+  }
+
+  .opportunity-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
+  }
+
+  .opportunity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .opportunity-role {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  .opportunity-commitment {
+    background: var(--color-accent-pale);
+    color: var(--color-accent);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .opportunity-description {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    line-height: 1.6;
+  }
+
+  /* Newsletter Section */
+  .newsletter-section {
+    background: var(--color-accent-pale);
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .newsletter-input-group {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .newsletter-input-group input {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    background: white;
+    color: var(--color-text);
+    transition: all var(--transition);
+  }
+
+  .newsletter-input-group input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+  }
+
+  .newsletter-input-group input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .newsletter-disclaimer {
+    color: var(--color-text-muted);
+  }
+
+  /* Stats Section */
+  .stats-section {
+    background: linear-gradient(135deg, var(--color-highlight) 0%, #D4843A 100%);
+    color: white;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  .stat-box {
+    text-align: center;
+    padding: var(--space-8);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .stat-number {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    font-family: var(--font-serif);
+    margin-bottom: var(--space-2);
+    color: white;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    line-height: 1.4;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .involvement-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .opportunity-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: var(--space-12) 0;
+    }
+
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+    }
+
+    .newsletter-input-group {
+      flex-direction: column;
+    }
+
+    .newsletter-input-group button {
+      width: 100%;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+
+    .stat-box {
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+  }
+</style>

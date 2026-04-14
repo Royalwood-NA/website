@@ -1,17 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const events = await getCollection('events', ({ data }) => !data.draft);
   return events.map((event) => ({
-    params: { slug: event.slug },
+    params: { slug: event.id.replace(/\.(md|mdx)$/, '') },
     props: { event },
   }));
 }
 
 const { event } = Astro.props;
-const { Content } = await event.render();
+const { Content } = await render(event);
 const {
   title,
   description,

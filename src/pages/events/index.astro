@@ -113,7 +113,7 @@ function formatCategory(category: string) {
 
                     <div class="card__body event-card__body">
                       <h3 class="event-card__title">
-                        <a href={`/events/${event.slug}`}>
+                        <a href={`/events/${event.id.replace(/(\.(md|mdx))$/, "")}`}>
                           {event.data.title}
                         </a>
                       </h3>
@@ -165,7 +165,7 @@ function formatCategory(category: string) {
                 const { month, day } = formatDateBadge(event.data.eventDate);
 
                 return (
-                  <div key={event.slug} class="past-event">
+                  <div key={event.id.replace(/(\.(md|mdx))$/, "")} class="past-event">
                     <div class="past-event__date">
                       <div class="date-badge date-badge--compact">
                         <div class="date-badge__month">{month}</div>
@@ -175,7 +175,7 @@ function formatCategory(category: string) {
 
                     <div class="past-event__content">
                       <h4 class="past-event__title">
-                        <a href={`/events/${event.slug}`}>
+                        <a href={`/events/${event.id.replace(/(\.(md|mdx))$/, "")}`}>
                           {event.data.title}
                         </a>
                       </h4>

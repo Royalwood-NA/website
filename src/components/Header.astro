@@ -1,0 +1,239 @@
+---
+const navLinks = [
+  { href: '/',             label: 'Home' },
+  { href: '/about',        label: 'About' },
+  { href: '/blog',         label: 'News' },
+  { href: '/events',       label: 'Events' },
+  { href: '/resources',    label: 'Resources' },
+  { href: '/get-involved', label: 'Get Involved' },
+  { href: '/contact',      label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <!-- Wordmark -->
+      <a href="/" class="wordmark" aria-label="Royalwood Neighbourhood Association — Home">
+        <span class="wordmark__badge">RNA</span>
+        <span class="wordmark__text">
+          <span class="wordmark__name">Royalwood</span>
+          <span class="wordmark__sub">Neighbourhood Association</span>
+        </span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="nav" aria-label="Main navigation">
+        <ul class="nav__list" role="list">
+          {navLinks.map(link => (
+            <li>
+              <a
+                href={link.href}
+                class={`nav__link ${isActive(link.href) ? 'nav__link--active' : ''}`}
+                aria-current={isActive(link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Mobile menu toggle -->
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation">
+        <span class="menu-toggle__bar"></span>
+        <span class="menu-toggle__bar"></span>
+        <span class="menu-toggle__bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" hidden>
+    <ul class="mobile-nav__list" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class={`mobile-nav__link ${isActive(link.href) ? 'mobile-nav__link--active' : ''}`}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 250, 248, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  height: 4.5rem;
+}
+
+/* Wordmark */
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.wordmark__badge {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: var(--color-accent);
+  color: white;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.wordmark__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.wordmark__name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.wordmark__sub {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* Desktop Nav */
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__link {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.nav__link:hover {
+  color: var(--color-accent);
+  background: var(--color-accent-pale);
+}
+
+.nav__link--active {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.menu-toggle__bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+/* Mobile nav */
+.mobile-nav {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.mobile-nav[hidden] { display: none; }
+
+.mobile-nav__list {
+  list-style: none;
+  padding: var(--space-4) var(--space-6);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.mobile-nav__link {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.mobile-nav__link:hover,
+.mobile-nav__link--active {
+  color: var(--color-accent);
+  background: var(--color-accent-pale);
+}
+
+@media (max-width: 880px) {
+  .nav { display: none; }
+  .menu-toggle { display: flex; }
+  .wordmark__sub { display: none; }
+}
+</style>
+
+<script>
+const toggle = document.querySelector('.menu-toggle') as HTMLButtonElement;
+const menu   = document.getElementById('mobile-menu') as HTMLElement;
+
+toggle?.addEventListener('click', () => {
+  const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+  toggle.setAttribute('aria-expanded', String(!isOpen));
+  menu.hidden = isOpen;
+});
+</script>

@@ -1,0 +1,322 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = 'About';
+const pageDescription = 'Learn about the Royalwood Neighbourhood Association, our mission, values, and board members.';
+
+const boardMembers = [
+  {
+    name: 'Sarah Mitchell',
+    role: 'President',
+    bio: 'Resident since 2008, passionate about community building and green spaces.',
+  },
+  {
+    name: 'James Okafor',
+    role: 'Vice President',
+    bio: 'Former city planner with a focus on neighbourhood development.',
+  },
+  {
+    name: 'Linda Tran',
+    role: 'Secretary',
+    bio: 'Keeps us organized and ensures every voice is heard.',
+  },
+  {
+    name: 'David Kowalski',
+    role: 'Treasurer',
+    bio: 'Brings financial expertise and transparency to the board.',
+  },
+  {
+    name: 'Priya Sharma',
+    role: 'Events Director',
+    bio: 'Creates memorable community experiences for all ages.',
+  },
+  {
+    name: 'Tom Leblanc',
+    role: 'Communications',
+    bio: 'Keeps residents informed and engaged.',
+  },
+];
+
+const values = [
+  {
+    icon: '🤝',
+    title: 'Community',
+    description: 'We build strong connections and foster a sense of belonging among all residents.',
+  },
+  {
+    icon: '🌱',
+    title: 'Sustainability',
+    description: 'We care for our environment and promote green initiatives throughout Royalwood.',
+  },
+  {
+    icon: '🎯',
+    title: 'Integrity',
+    description: 'We operate with transparency, honesty, and accountability in all our endeavours.',
+  },
+  {
+    icon: '✨',
+    title: 'Excellence',
+    description: 'We strive to deliver quality programs and services that enrich our community.',
+  },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>About the RNA</h1>
+      <p class="hero-subtitle">Strengthening community ties and improving life in Royalwood, Edmonton</p>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <!-- Left: Mission Text -->
+        <div>
+          <h2>Our Mission & History</h2>
+          <p>
+            The Royalwood Neighbourhood Association (RNA) is a volunteer-run, non-profit organization dedicated to fostering community spirit and addressing the needs of our residents. Founded around 2002, we have been serving the Royalwood neighbourhood of Edmonton for more than two decades.
+          </p>
+          <p>
+            We believe that strong communities are built on genuine connections, shared values, and collaborative action. Whether through organizing social events, advocating for neighbourhood concerns, or creating opportunities for civic engagement, the RNA is committed to making Royalwood a thriving place to live.
+          </p>
+          <p>
+            Our board is entirely volunteer-driven—residents who generously give their time and expertise to benefit our community. We welcome all residents to join us in our mission.
+          </p>
+        </div>
+
+        <!-- Right: Key Facts Card -->
+        <div>
+          <div class="facts-card">
+            <h3>Key Facts</h3>
+            <div class="facts-list">
+              <div class="fact-item">
+                <span class="fact-label">Founded</span>
+                <span class="fact-value">~2002</span>
+              </div>
+              <div class="fact-item">
+                <span class="fact-label">Members</span>
+                <span class="fact-value">500+ Households</span>
+              </div>
+              <div class="fact-item">
+                <span class="fact-label">Board</span>
+                <span class="fact-value">Volunteer-run</span>
+              </div>
+              <div class="fact-item">
+                <span class="fact-label">Meetings</span>
+                <span class="fact-value">Monthly</span>
+              </div>
+              <div class="fact-item">
+                <span class="fact-label">Service</span>
+                <span class="fact-value">20+ Years</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Board Members Section -->
+  <section class="section" style="background-color: var(--color-surface-alt);">
+    <div class="container">
+      <h2 style="margin-bottom: var(--space-12); text-align: center;">Our Board Members</h2>
+      <div class="grid-3">
+        {boardMembers.map((member) => (
+          <div class="card">
+            <div class="card__body">
+              <h3 class="member-name">{member.name}</h3>
+              <div class="badge badge--accent" style="margin-bottom: var(--space-4);">
+                {member.role}
+              </div>
+              <p class="member-bio">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="section values-section">
+    <div class="container">
+      <h2 style="margin-bottom: var(--space-12); text-align: center; color: white;">Our Values</h2>
+      <div class="grid-2" style="grid-template-columns: repeat(4, 1fr); gap: var(--space-8);">
+        {values.map((value) => (
+          <div class="value-card">
+            <div class="value-icon">{value.icon}</div>
+            <h3 class="value-title">{value.title}</h3>
+            <p class="value-description">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style scoped>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #1B4D3A 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: white;
+    margin-bottom: var(--space-4);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Mission Section */
+  .facts-card {
+    background: var(--color-accent-pale);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+
+  .facts-card h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .facts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .fact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-accent-light);
+  }
+
+  .fact-item:last-child {
+    border-bottom: none;
+  }
+
+  .fact-label {
+    font-weight: 600;
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .fact-value {
+    font-weight: 700;
+    color: var(--color-text);
+    font-size: 1rem;
+  }
+
+  /* Board Members Section */
+  .member-name {
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .member-bio {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Values Section */
+  .values-section {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .value-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition);
+  }
+
+  .value-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .value-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    display: inline-block;
+  }
+
+  .value-title {
+    color: white;
+    margin-bottom: var(--space-3);
+  }
+
+  .value-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .grid-2 > div:nth-child(2) {
+      grid-column: 1 / -1;
+    }
+
+    .value-card {
+      grid-column: span 2;
+    }
+
+    .value-card:nth-last-child(1):nth-child(odd) {
+      grid-column: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: var(--space-12) 0;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .facts-card {
+      margin-top: var(--space-8);
+    }
+
+    .fact-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .value-card {
+      grid-column: span 1 !important;
+    }
+  }
+</style>

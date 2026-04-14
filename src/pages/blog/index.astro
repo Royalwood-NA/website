@@ -1,0 +1,317 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Get all non-draft blog posts and sort by date (newest first)
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// Featured post is the first (most recent)
+const featuredPost = sortedPosts[0];
+const otherPosts = sortedPosts.slice(1);
+---
+
+<BaseLayout title="News & Updates" description="Stay informed about what's happening in Royalwood.">
+  <div class="blog-page">
+    <!-- Page Hero -->
+    <section class="blog-hero section--lg">
+      <div class="container">
+        <h1 class="blog-hero__title">News & Updates</h1>
+        <p class="blog-hero__subtitle">Stay informed about what's happening in Royalwood.</p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section">
+      <div class="container">
+        {sortedPosts.length === 0 ? (
+          <!-- Empty State -->
+          <div class="blog-empty">
+            <div class="blog-empty__content">
+              <h2>No posts yet</h2>
+              <p>Check back soon for news and updates from Royalwood Neighbourhood Association!</p>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Featured Post */}
+            {featuredPost && (
+              <article class="featured-post">
+                <div class="featured-post__inner">
+                  <div class="featured-post__image">
+                    {featuredPost.data.image ? (
+                      <img src={featuredPost.data.image} alt={featuredPost.data.title} />
+                    ) : (
+                      <div class="featured-post__image-placeholder" aria-hidden="true"></div>
+                    )}
+                  </div>
+                  <div class="featured-post__content">
+                    {featuredPost.data.category && (
+                      <a href={`/blog?category=${encodeURIComponent(featuredPost.data.category)}`} class="badge badge--accent">
+                        {featuredPost.data.category}
+                      </a>
+                    )}
+                    <h2 class="featured-post__title">
+                      <a href={`/blog/${featuredPost.id.replace(/\.(md|mdx)$/, '')}`}>{featuredPost.data.title}</a>
+                    </h2>
+                    <p class="featured-post__description">{featuredPost.data.description}</p>
+                    <div class="featured-post__meta">
+                      <span class="featured-post__author">By {featuredPost.data.author}</span>
+                      <span class="featured-post__date">
+                        {featuredPost.data.pubDate.toLocaleDateString('en-CA', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </span>
+                    </div>
+                    <a href={`/blog/${featuredPost.id.replace(/\.(md|mdx)$/, '')}`} class="btn btn--primary btn--sm">
+                      Read More →
+                    </a>
+                  </div>
+                </div>
+              </article>
+            )}
+
+            {/* Other Posts Grid */}
+            {otherPosts.length > 0 && (
+              <div class="blog-grid">
+                {otherPosts.map((post) => (
+                  <article class="blog-card card">
+                    <div class="card__body">
+                      {post.data.category && (
+                        <a href={`/blog?category=${encodeURIComponent(post.data.category)}`} class="badge badge--accent">
+                          {post.data.category}
+                        </a>
+                      )}
+                      <h3 class="blog-card__title">
+                        <a href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`}>{post.data.title}</a>
+                      </h3>
+                      <p class="blog-card__description">{post.data.description}</p>
+                      <div class="blog-card__meta">
+                        <span class="blog-card__author">{post.data.author}</span>
+                        <span class="blog-card__date">
+                          {post.data.pubDate.toLocaleDateString('en-CA', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                          })}
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+.blog-hero {
+  background: linear-gradient(135deg, var(--color-accent-pale) 0%, var(--color-surface-alt) 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.blog-hero__title {
+  margin-bottom: var(--space-3);
+  color: var(--color-text);
+}
+
+.blog-hero__subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Featured Post */
+.featured-post {
+  margin-bottom: var(--space-16);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+
+.featured-post:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border-strong);
+}
+
+.featured-post__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.featured-post__image {
+  min-height: 300px;
+  background: var(--color-surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-post__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-post__image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-accent-pale) 0%, var(--color-highlight-pale) 100%);
+}
+
+.featured-post__content {
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.featured-post__title {
+  margin: var(--space-4) 0 var(--space-3) 0;
+  font-size: 1.875rem;
+}
+
+.featured-post__title a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.featured-post__title a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.featured-post__description {
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+  line-height: 1.6;
+}
+
+.featured-post__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+.featured-post__author::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--color-text-muted);
+  border-radius: 50%;
+  margin-right: var(--space-2);
+}
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 900px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featured-post__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-post__image {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-post__content {
+    padding: var(--space-6);
+  }
+
+  .featured-post__title {
+    font-size: 1.5rem;
+  }
+
+  .featured-post__description {
+    font-size: 1rem;
+  }
+}
+
+/* Blog Card */
+.blog-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card__title {
+  margin-top: 0;
+  margin-bottom: var(--space-3);
+  font-size: 1.25rem;
+}
+
+.blog-card__title a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.blog-card__title a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.blog-card__description {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.blog-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--color-text-subtle);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Empty State */
+.blog-empty {
+  text-align: center;
+  padding: var(--space-16) var(--space-6);
+}
+
+.blog-empty__content h2 {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.blog-empty__content p {
+  color: var(--color-text-subtle);
+  max-width: 400px;
+  margin: 0 auto;
+}
+</style>

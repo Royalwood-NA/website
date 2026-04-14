@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://royalwoodna.org',
+  site: 'https://royalwood-na.github.io/website',
   integrations: [mdx(), sitemap()],
 });

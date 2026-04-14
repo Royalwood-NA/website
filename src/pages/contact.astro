@@ -1,29 +1,30 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const pageTitle = 'Contact';
-const pageDescription = 'Get in touch with the Royalwood Neighbourhood Association. We\'d love to hear from you!';
+const pageTitle = "Contact";
+const pageDescription =
+  "Get in touch with the Royalwood Neighbourhood Association. We'd love to hear from you!";
 
 const faqs = [
   {
-    question: 'How do I report a concern?',
+    question: "How do I report a concern?",
     answer:
-      'You can report a neighbourhood concern by emailing us at info@royalwoodna.org or by filling out our contact form above. Please include as much detail as possible, and we\'ll respond within 48 hours.',
+      "You can report a neighbourhood concern by emailing us at info@royalwoodna.org or by filling out our contact form above. Please include as much detail as possible, and we'll respond within 48 hours.",
   },
   {
-    question: 'When are board meetings?',
+    question: "When are board meetings?",
     answer:
-      'Our board meets monthly on the second Thursday of each month at 7:00 PM. Meetings are held virtually via Zoom. Residents are welcome to attend! Check our Events page or email us for the meeting link.',
+      "Our board meets monthly on the second Thursday of each month at 7:00 PM. Meetings are held virtually via Zoom. Residents are welcome to attend! Check our Events page or email us for the meeting link.",
   },
   {
-    question: 'How do I join the board?',
+    question: "How do I join the board?",
     answer:
       'We welcome interested residents to apply! Board positions include President, Vice President, Secretary, Treasurer, and various directors. Interested? Send us an email with "Board Application" as the subject, or use our contact form to express your interest.',
   },
   {
-    question: 'Is there a membership fee?',
+    question: "Is there a membership fee?",
     answer:
-      'No, membership is free! However, we do accept voluntary donations to support our programs and events. All contributions help us serve the community better.',
+      "No, membership is free! However, we do accept voluntary donations to support our programs and events. All contributions help us serve the community better.",
   },
 ];
 ---
@@ -33,7 +34,10 @@ const faqs = [
   <section class="header-section">
     <div class="container">
       <h1>Contact Us</h1>
-      <p class="header-subtitle">We'd love to hear from you. Reach out with questions, suggestions, or to get involved!</p>
+      <p class="header-subtitle">
+        We'd love to hear from you. Reach out with questions, suggestions, or to
+        get involved!
+      </p>
     </div>
   </section>
 
@@ -44,7 +48,11 @@ const faqs = [
         <!-- Left Column: Contact Form -->
         <div class="form-column">
           <h2>Send us a Message</h2>
-          <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+          <form
+            class="contact-form"
+            action="https://formspree.io/f/placeholder"
+            method="POST"
+          >
             <div class="form-group">
               <label for="name">Name <span class="required">*</span></label>
               <input
@@ -68,7 +76,9 @@ const faqs = [
             </div>
 
             <div class="form-group">
-              <label for="subject">Subject <span class="required">*</span></label>
+              <label for="subject"
+                >Subject <span class="required">*</span></label
+              >
               <select id="subject" name="subject" required>
                 <option value="">Select a subject...</option>
                 <option value="general">General Inquiry</option>
@@ -80,20 +90,26 @@ const faqs = [
             </div>
 
             <div class="form-group">
-              <label for="message">Message <span class="required">*</span></label>
+              <label for="message"
+                >Message <span class="required">*</span></label
+              >
               <textarea
                 id="message"
                 name="message"
                 required
                 placeholder="Tell us what's on your mind..."
-                rows="6"
-              ></textarea>
+                rows="6"></textarea>
             </div>
 
-            <button type="submit" class="btn btn--primary btn--lg">Send Message</button>
+            <button type="submit" class="btn btn--primary btn--lg send-msg-btn"
+              >Send Message</button
+            >
 
             <p class="form-disclaimer">
-              <strong>Note:</strong> This form uses Formspree as a placeholder. In production, submissions will be directed to <a href="mailto:info@royalwoodna.org">info@royalwoodna.org</a>. We typically respond to all inquiries within 48 hours.
+              <strong>Note:</strong> This form uses Formspree as a placeholder. In
+              production, submissions will be directed to <a
+                href="mailto:info@royalwoodna.org">info@royalwoodna.org</a
+              >. We typically respond to all inquiries within 48 hours.
             </p>
           </form>
         </div>
@@ -129,8 +145,12 @@ const faqs = [
                   2nd Thursday of each month<br />
                   7:00 PM (Virtual via Zoom)
                 </p>
-                <p class="text-muted" style="margin-top: var(--space-4); font-size: 0.9rem;">
-                  Check our <a href="/events">Events page</a> for meeting links and updates.
+                <p
+                  class="text-muted"
+                  style="margin-top: var(--space-4); font-size: 0.9rem;"
+                >
+                  Check our <a href="/events">Events page</a> for meeting links and
+                  updates.
                 </p>
               </div>
 
@@ -139,7 +159,9 @@ const faqs = [
               <div class="info-item">
                 <h4 class="info-label">Response Time</h4>
                 <p>
-                  We aim to respond to all inquiries within <strong>48 hours</strong> during business days.
+                  We aim to respond to all inquiries within <strong
+                    >48 hours</strong
+                  > during business days.
                 </p>
               </div>
             </div>
@@ -152,17 +174,21 @@ const faqs = [
   <!-- FAQ Section -->
   <section class="section faq-section">
     <div class="container container--narrow">
-      <h2 style="text-align: center; margin-bottom: var(--space-12);">Frequently Asked Questions</h2>
+      <h2 style="text-align: center; margin-bottom: var(--space-12);">
+        Frequently Asked Questions
+      </h2>
 
       <div class="faq-list">
-        {faqs.map((faq, index) => (
-          <details class="faq-item" key={index}>
-            <summary class="faq-question">{faq.question}</summary>
-            <div class="faq-answer">
-              <p>{faq.answer}</p>
-            </div>
-          </details>
-        ))}
+        {
+          faqs.map((faq, index) => (
+            <details class="faq-item" key={index}>
+              <summary class="faq-question">{faq.question}</summary>
+              <div class="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -171,7 +197,7 @@ const faqs = [
 <style scoped>
   /* Header Section */
   .header-section {
-    background: linear-gradient(135deg, var(--color-accent) 0%, #1B4D3A 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, #1b4d3a 100%);
     color: white;
     padding: var(--space-16) 0;
     text-align: center;
@@ -216,7 +242,7 @@ const faqs = [
   }
 
   .required {
-    color: #D32F2F;
+    color: #d32f2f;
   }
 
   .contact-form input,
@@ -243,6 +269,10 @@ const faqs = [
   .contact-form textarea {
     resize: vertical;
     font-family: var(--font-sans);
+  }
+
+  .send-msg-btn {
+    display: inline-block;
   }
 
   .form-disclaimer {
@@ -334,7 +364,7 @@ const faqs = [
   }
 
   .faq-question::after {
-    content: '+';
+    content: "+";
     font-size: 1.5rem;
     font-weight: 400;
     transition: transform var(--transition);

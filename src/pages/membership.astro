@@ -1,0 +1,415 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = 'Membership';
+const pageDescription = 'Become a member of the Royalwood Neighbourhood Association. Your membership supports community programs, events, and advocacy for all Royalwood residents.';
+
+const benefits = [
+  {
+    icon: '🗳️',
+    title: 'Have Your Voice Heard',
+    description: 'Members can vote at general meetings and help shape the direction of the RNA—your priorities become our priorities.',
+  },
+  {
+    icon: '🎉',
+    title: 'Access to Exclusive Events',
+    description: 'Get early access and member-only pricing for RNA-hosted events, workshops, and community gatherings throughout the year.',
+  },
+  {
+    icon: '📰',
+    title: 'Stay in the Know',
+    description: 'Receive our member newsletter packed with neighbourhood news, city updates, and upcoming events before anyone else.',
+  },
+  {
+    icon: '🌱',
+    title: 'Fund What Matters',
+    description: 'Your dues directly support programs like park clean-ups, safety initiatives, and community beautification projects.',
+  },
+  {
+    icon: '🤝',
+    title: 'Connect with Neighbours',
+    description: 'Build real relationships with the people who live around you through member meet-ups and volunteer opportunities.',
+  },
+  {
+    icon: '🏛️',
+    title: 'Strengthen Advocacy',
+    description: 'A larger membership base gives the RNA a stronger voice when representing Royalwood to the City of Winnipeg.',
+  },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Join the Royalwood Neighbourhood Association</h1>
+      <p class="hero-lead">
+        Membership is the simplest, most impactful way to invest in the neighbourhood you call home. For just a small annual fee, you help keep Royalwood vibrant, safe, and connected.
+      </p>
+      <a href="#join" class="btn btn--hero">Become a Member Today</a>
+    </div>
+  </section>
+
+  <!-- Why Membership Matters -->
+  <section class="section">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-text">
+          <h2>Why Membership Matters</h2>
+          <p>
+            The Royalwood Neighbourhood Association is an entirely volunteer-run, non-profit organization. We don't receive ongoing government funding—our programs, events, and advocacy efforts are sustained by the generous dues paid by members like you.
+          </p>
+          <p>
+            When you become a member, you're not just supporting an organization. You're investing in better parks, safer streets, stronger community ties, and a neighbourhood that actively represents your interests at City Hall.
+          </p>
+          <p>
+            Every household that joins makes the RNA more effective. Help us reach every resident in Royalwood.
+          </p>
+        </div>
+        <div class="membership-card card">
+          <div class="card__body">
+            <div class="membership-price-label">Annual Household Membership</div>
+            <div class="membership-price">$20</div>
+            <div class="membership-price-note">per household / year</div>
+            <ul class="membership-includes">
+              <li>Voting rights at general meetings</li>
+              <li>Member newsletter & early event access</li>
+              <li>Supports all RNA programs & events</li>
+              <li>Strengthens neighbourhood advocacy</li>
+            </ul>
+            <a href="#join" class="btn btn--primary" style="width: 100%; text-align: center;">Join Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="section benefits-section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--space-12);">What You Get as a Member</h2>
+      <div class="benefits-grid">
+        {benefits.map((benefit) => (
+          <div class="benefit-card card">
+            <div class="card__body">
+              <div class="benefit-icon">{benefit.icon}</div>
+              <h3>{benefit.title}</h3>
+              <p>{benefit.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Join Section -->
+  <section class="section join-section" id="join">
+    <div class="container container--narrow">
+      <h2 style="text-align: center; margin-bottom: var(--space-4);">Ready to Join?</h2>
+      <p style="text-align: center; margin-bottom: var(--space-10); color: var(--color-text-muted);">
+        Membership is open to all households within the Royalwood neighbourhood. Fill out the form below and we'll be in touch with payment instructions. It only takes a minute.
+      </p>
+
+      <form class="join-form" action="https://formspree.io/f/placeholder" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Jane" required />
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="address">Home Address (Royalwood)</label>
+          <input type="text" id="address" name="address" placeholder="123 Royalwood Dr" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Anything you'd like us to know? (optional)</label>
+          <textarea id="message" name="message" rows="3" placeholder="Areas of interest, questions, etc."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Submit Membership Application</button>
+        <p class="form-disclaimer">
+          After submitting, we'll send you payment instructions within 1–2 business days. Annual dues are $20 per household.
+        </p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<style scoped>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #1B4D3A 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: white;
+    margin-bottom: var(--space-6);
+    font-size: clamp(2rem, 6vw, 3.5rem);
+  }
+
+  .hero-lead {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto var(--space-10);
+  }
+
+  .btn--hero {
+    background: white;
+    color: var(--color-accent);
+    font-weight: 700;
+    padding: var(--space-4) var(--space-10);
+    border-radius: var(--radius-pill);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all var(--transition);
+  }
+
+  .btn--hero:hover {
+    background: var(--color-accent-pale);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Why Membership Section */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .why-text h2 {
+    margin-bottom: var(--space-6);
+  }
+
+  .why-text p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-5);
+  }
+
+  .why-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Membership Price Card */
+  .membership-card {
+    position: sticky;
+    top: var(--space-8);
+  }
+
+  .membership-card .card__body {
+    text-align: center;
+    padding: var(--space-8);
+  }
+
+  .membership-price-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-4);
+  }
+
+  .membership-price {
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: var(--font-serif);
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+  }
+
+  .membership-price-note {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+  }
+
+  .membership-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-8);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .membership-includes li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+
+  .membership-includes li::before {
+    content: '✓';
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* Benefits Section */
+  .benefits-section {
+    background: var(--color-surface-alt);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+
+  .benefit-card .card__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    display: inline-block;
+  }
+
+  .benefit-card h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+    font-size: 1.1rem;
+  }
+
+  .benefit-card p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* Join / CTA Section */
+  .join-section {
+    background: var(--color-accent-pale);
+  }
+
+  .join-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-10);
+    box-shadow: var(--shadow-md);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text);
+    background: white;
+    transition: all var(--transition);
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .btn--full {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-disclaimer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .membership-card {
+      position: static;
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: var(--space-12) 0;
+    }
+
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .join-form {
+      padding: var(--space-6);
+    }
+  }
+</style>

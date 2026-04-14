@@ -1,78 +1,91 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const allResources = await getCollection('resources', ({ data }) => !data.draft);
+const allResources = await getCollection(
+  "resources",
+  ({ data }) => !data.draft,
+);
 
 // Group resources by section with proper ordering
 const sections = [
-  'Bylaws & Governance',
-  'Resident Guides',
-  'Meeting Minutes',
-  'City Resources'
+  "Bylaws & Governance",
+  "Resident Guides",
+  "Meeting Minutes",
+  "City Resources",
 ];
 
 const sectionIcons: Record<string, string> = {
-  'Bylaws & Governance': '📜',
-  'Resident Guides': '🏡',
-  'Meeting Minutes': '📝',
-  'City Resources': '🌐'
+  "Bylaws & Governance": "📜",
+  "Resident Guides": "🏡",
+  "Meeting Minutes": "📝",
+  "City Resources": "🌐",
 };
 
-const groupedResources = sections.map(section => ({
+const groupedResources = sections.map((section) => ({
   section,
   icon: sectionIcons[section],
   resources: allResources
-    .filter(r => r.data.section === section)
-    .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+    .filter((r) => r.data.section === section)
+    .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)),
 }));
 ---
 
-<BaseLayout title="Resources" description="Everything you need to know about living in Royalwood.">
+<BaseLayout
+  title="Resources"
+  description="Everything you need to know about living in Royalwood."
+>
   <!-- Hero Section -->
   <div class="hero-section">
     <h1 class="hero-title">Resources</h1>
-    <p class="hero-subtitle">Everything you need to know about living in Royalwood.</p>
+    <p class="hero-subtitle">
+      Everything you need to know about living in Royalwood.
+    </p>
   </div>
 
   <!-- Resource Sections Grid -->
   <div class="resources-container">
-    {groupedResources.map(({ section, icon, resources }) => (
-      <div class="section-card">
-        <div class="section-header">
-          <span class="section-icon">{icon}</span>
-          <h2 class="section-title">{section}</h2>
-        </div>
-        
-        <div class="resources-list">
-          {resources.length > 0 ? (
-            resources.map(resource => (
-              <div class="resource-item">
-                <h3 class="resource-title">
-                  <a href={`/resources/${resource.id.replace(/\.(md|mdx)$/, '')}`}>
-                    {resource.data.title}
-                  </a>
-                </h3>
-                <p class="resource-description">
-                  {resource.data.description}
-                </p>
-                {resource.data.updatedDate && (
-                  <p class="resource-date">
-                    Updated: {resource.data.updatedDate.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
+    {
+      groupedResources.map(({ section, icon, resources }) => (
+        <div class="section-card">
+          <div class="section-header">
+            <span class="section-icon">{icon}</span>
+            <h2 class="section-title">{section}</h2>
+          </div>
+
+          <div class="resources-list">
+            {resources.length > 0 ? (
+              resources.map((resource) => (
+                <div class="resource-item">
+                  <h3 class="resource-title">
+                    <a
+                      href={`/resources/${resource.id.replace(/\.(md|mdx)$/, "")}`}
+                    >
+                      {resource.data.title}
+                    </a>
+                  </h3>
+                  <p class="resource-description">
+                    {resource.data.description}
                   </p>
-                )}
-              </div>
-            ))
-          ) : (
-            <p class="empty-state">No resources in this section yet.</p>
-          )}
+                  {resource.data.updatedDate && (
+                    <p class="resource-date">
+                      Updated:{" "}
+                      {resource.data.updatedDate.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+              ))
+            ) : (
+              <p class="empty-state">No resources in this section yet.</p>
+            )}
+          </div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </BaseLayout>
 
@@ -102,7 +115,8 @@ const groupedResources = sections.map(section => ({
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: var(--space-6);
-    margin-bottom: var(--space-8);
+    margin: var(--space-8);
+    padding: 0 var(--space-1);
   }
 
   @media (max-width: 768px) {

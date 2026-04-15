@@ -22,8 +22,18 @@ const sectionIcons: Record<string, string> = {
   "City Resources": "🌐",
 };
 
+const slugify = (str: string): string => {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((v) => v.replace(/[^a-zA-Z]/g, ""))
+    .filter((v) => v !== "")
+    .join("-");
+};
+
 const groupedResources = sections.map((section) => ({
   section,
+  slug: slugify(section),
   icon: sectionIcons[section],
   resources: allResources
     .filter((r) => r.data.section === section)
@@ -46,8 +56,8 @@ const groupedResources = sections.map((section) => ({
   <!-- Resource Sections Grid -->
   <div class="resources-container">
     {
-      groupedResources.map(({ section, icon, resources }) => (
-        <div class="section-card">
+      groupedResources.map(({ section, slug, icon, resources }) => (
+        <div class="section-card" id={slug}>
           <div class="section-header">
             <span class="section-icon">{icon}</span>
             <h2 class="section-title">{section}</h2>

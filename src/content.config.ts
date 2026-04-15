@@ -56,4 +56,43 @@ const boardMembers = defineCollection({
   }),
 });
 
-export const collections = { blog, events, resources, boardMembers };
+const statsDatas = defineCollection({
+  loader: file("src/data/stats.json"),
+  schema: z.object({
+    id: z.string(),
+    yearFounded: z.number(),
+    members: z.number(),
+    yearsOfService: z.number(),
+    eventsHeldAnnually: z.number(),
+  }),
+});
+
+const boardValues = defineCollection({
+  loader: file("src/data/boardValues.json"),
+  schema: z.object({
+    id: z.string(),
+    icon: z.string(),
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
+const volunteerOpportunities = defineCollection({
+  loader: file("src/data/volunteerOpportunities.json"),
+  schema: z.object({
+    id: z.string(),
+    role: z.string(),
+    commitment: z.string(),
+    description: z.string(),
+  }),
+});
+
+export const collections = {
+  blog,
+  events,
+  resources,
+  boardMembers,
+  statsDatas,
+  boardValues,
+  volunteerOpportunities,
+};

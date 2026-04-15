@@ -1,0 +1,23 @@
+[
+  {
+    "id": "0",
+    "role": "Secretary (Board Role)",
+    "commitment": "3-5 hrs/month",
+    "description":
+      "Maintains meetings minutes, records minority opinion, RNA correspondence, record keeping. Handles special resolutions, changes in officers, amendments to bylaws, incorporates documents. Secures seal of association if applicable."
+  },
+  {
+    "id": "1",
+    "role": "Green Space Champion",
+    "commitment": "2-4 hrs/month",
+    "description":
+      "Help organize tree planting, park clean-ups, and environmental initiatives."
+  },
+  {
+    "id": "2",
+    "role": "Community Outreach",
+    "commitment": "2-4 hrs/month",
+    "description":
+      "Connect with residents, gather feedback, and encourage community membership enrolments."
+  }
+]

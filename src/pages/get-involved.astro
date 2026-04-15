@@ -1,5 +1,7 @@
 ---
+import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
 const pageTitle = "Get Involved";
 const pageDescription =
@@ -40,44 +42,22 @@ const involvementWays = [
   },
 ];
 
-const opportunities = [
-  {
-    role: "Event Coordinator",
-    commitment: "3-5 hrs/month",
-    description:
-      "Help plan and coordinate community events, manage logistics, and engage residents.",
-  },
-  {
-    role: "Social Media Manager",
-    commitment: "2-3 hrs/month",
-    description:
-      "Share community news, photos, and updates across our social media platforms.",
-  },
-  {
-    role: "Green Space Champion",
-    commitment: "2 hrs/month",
-    description:
-      "Help organize tree planting, park clean-ups, and environmental initiatives.",
-  },
-  {
-    role: "Community Outreach",
-    commitment: "2-4 hrs/month",
-    description:
-      "Connect with residents, gather feedback, and represent the RNA at neighbourhood events.",
-  },
-];
+const volunteerOpportunities = await getCollection("volunteerOpportunities");
+const opportunities = volunteerOpportunities.map((opp) => opp.data);
 
-const stats = [
+const stats = await getEntry("statsDatas", "0");
+
+const statsData = [
   {
-    number: "50+",
+    number: `${stats?.data.members}+`,
     label: "Households Represented",
   },
   {
-    number: "12",
+    number: `${stats?.data.eventsHeldAnnually}+`,
     label: "Events per Year",
   },
   {
-    number: "3+",
+    number: `${stats?.data.yearsOfService}+`,
     label: "Years of Service",
   },
 ];
@@ -206,7 +186,7 @@ const stats = [
       </h2>
       <div class="stats-grid">
         {
-          stats.map((stat) => (
+          statsData.map((stat) => (
             <div class="stat-box">
               <div class="stat-number">{stat.number}</div>
               <div class="stat-label">{stat.label}</div>

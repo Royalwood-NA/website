@@ -1,0 +1,30 @@
+[
+  {
+    "id": "0",
+    "icon": "🤝",
+    "title": "Community",
+    "description":
+      "We build strong connections and foster a sense of belonging among all residents."
+  },
+  {
+    "id": "1",
+    "icon": "🌱",
+    "title": "Sustainability",
+    "description":
+      "We care for our environment and promote green initiatives throughout Royalwood."
+  },
+  {
+    "id": "2",
+    "icon": "🎯",
+    "title": "Integrity",
+    "description":
+      "We operate with transparency, honesty, and accountability in all our endeavours."
+  },
+  {
+    "id": "3",
+    "icon": "✨",
+    "title": "Knowledge",
+    "description":
+      "We strive to deliver important information and resources that enable & enrich our community."
+  }
+]

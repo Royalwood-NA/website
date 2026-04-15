@@ -1,39 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
 
 const pageTitle = "About";
 const pageDescription =
   "Learn about the Royalwood Neighbourhood Association, our mission, values, and board members.";
 
 const boardMembers = await getCollection("boardMembers");
+const stats = (await getEntry("statsDatas", "0"))?.data;
 
-const values = [
-  {
-    icon: "🤝",
-    title: "Community",
-    description:
-      "We build strong connections and foster a sense of belonging among all residents.",
-  },
-  {
-    icon: "🌱",
-    title: "Sustainability",
-    description:
-      "We care for our environment and promote green initiatives throughout Royalwood.",
-  },
-  {
-    icon: "🎯",
-    title: "Integrity",
-    description:
-      "We operate with transparency, honesty, and accountability in all our endeavours.",
-  },
-  {
-    icon: "✨",
-    title: "Excellence",
-    description:
-      "We strive to deliver quality programs and services that enrich our community.",
-  },
-];
+const values = await getCollection("boardValues");
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -82,11 +59,11 @@ const values = [
             <div class="facts-list">
               <div class="fact-item">
                 <span class="fact-label">Founded</span>
-                <span class="fact-value">2023</span>
+                <span class="fact-value">{stats?.yearFounded}</span>
               </div>
               <div class="fact-item">
                 <span class="fact-label">Members</span>
-                <span class="fact-value">50+ Households</span>
+                <span class="fact-value">{stats?.members}+ Households</span>
               </div>
               <div class="fact-item">
                 <span class="fact-label">Board</span>
@@ -94,7 +71,7 @@ const values = [
               </div>
               <div class="fact-item">
                 <span class="fact-label">Service</span>
-                <span class="fact-value">3+ Years</span>
+                <span class="fact-value">{stats?.yearsOfService}+ Years</span>
               </div>
             </div>
           </div>
@@ -140,7 +117,7 @@ const values = [
       </h2>
       <div class="values-grid">
         {
-          values.map((value) => (
+          values.map(({ data: value }) => (
             <div class="value-card">
               <div class="value-icon">{value.icon}</div>
               <h3 class="value-title">{value.title}</h3>

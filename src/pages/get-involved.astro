@@ -1,83 +1,84 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const pageTitle = 'Get Involved';
-const pageDescription = 'Discover ways to get involved with the Royalwood Neighbourhood Association. Volunteer, join the board, or support our community!';
+const pageTitle = "Get Involved";
+const pageDescription =
+  "Discover ways to get involved with the Royalwood Neighbourhood Association. Volunteer, join the board, or support our community!";
 
 const involvementWays = [
   {
-    icon: '🏛️',
-    title: 'Join the Board',
+    icon: "🏛️",
+    title: "Join the Board",
     description:
-      'Help lead our community by becoming a board member. We seek dedicated residents to serve as President, Vice President, Secretary, Treasurer, and various directors.',
-    buttonText: 'Apply Now',
-    buttonLink: '/contact',
+      "Help lead our community by becoming a board member. We seek dedicated residents to serve as President, Vice President, Secretary, Treasurer, and various directors.",
+    buttonText: "Apply Now",
+    buttonLink: "/contact",
   },
   {
-    icon: '🎉',
-    title: 'Volunteer at Events',
+    icon: "🎉",
+    title: "Volunteer at Events",
     description:
-      'Get hands-on by helping us organize and run community events throughout the year. No experience necessary—just bring enthusiasm!',
-    buttonText: 'Express Interest',
-    buttonLink: '/contact',
+      "Get hands-on by helping us organize and run community events throughout the year. No experience necessary—just bring enthusiasm!",
+    buttonText: "Express Interest",
+    buttonLink: "/contact",
   },
   {
-    icon: '🪪',
-    title: 'Membership',
+    icon: "🪪",
+    title: "Membership",
     description:
-      'Support your neighbourhood by becoming an RNA member. Your membership funds community programs, events, and advocacy that benefit every Royalwood resident.',
-    buttonText: 'Become a Member',
-    buttonLink: '/membership',
+      "Support your neighbourhood by becoming an RNA member. Your membership funds community programs, events, and advocacy that benefit every Royalwood resident.",
+    buttonText: "Become a Member",
+    buttonLink: "/membership",
   },
   {
-    icon: '📢',
-    title: 'Spread the Word',
+    icon: "📢",
+    title: "Spread the Word",
     description:
-      'Help us grow by sharing information about the RNA with your neighbours. The more residents who know about us, the stronger our community becomes.',
-    buttonText: 'Share This Site',
-    buttonLink: '#',
+      "Help us grow by sharing information about the RNA with your neighbours. The more residents who know about us, the stronger our community becomes.",
+    buttonText: "Share This Site",
+    buttonLink: "#",
   },
 ];
 
 const opportunities = [
   {
-    role: 'Event Coordinator',
-    commitment: '3-5 hrs/month',
-    description: 'Help plan and coordinate community events, manage logistics, and engage residents.',
+    role: "Event Coordinator",
+    commitment: "3-5 hrs/month",
+    description:
+      "Help plan and coordinate community events, manage logistics, and engage residents.",
   },
   {
-    role: 'Social Media Manager',
-    commitment: '2-3 hrs/month',
-    description: 'Share community news, photos, and updates across our social media platforms.',
+    role: "Social Media Manager",
+    commitment: "2-3 hrs/month",
+    description:
+      "Share community news, photos, and updates across our social media platforms.",
   },
   {
-    role: 'Green Space Champion',
-    commitment: '2 hrs/month',
-    description: 'Help organize tree planting, park clean-ups, and environmental initiatives.',
+    role: "Green Space Champion",
+    commitment: "2 hrs/month",
+    description:
+      "Help organize tree planting, park clean-ups, and environmental initiatives.",
   },
   {
-    role: 'Community Outreach',
-    commitment: '2-4 hrs/month',
-    description: 'Connect with residents, gather feedback, and represent the RNA at neighbourhood events.',
+    role: "Community Outreach",
+    commitment: "2-4 hrs/month",
+    description:
+      "Connect with residents, gather feedback, and represent the RNA at neighbourhood events.",
   },
 ];
 
 const stats = [
   {
-    number: '500+',
-    label: 'Households Represented',
+    number: "50+",
+    label: "Households Represented",
   },
   {
-    number: '12',
-    label: 'Events per Year',
+    number: "12",
+    label: "Events per Year",
   },
   {
-    number: '50+',
-    label: 'Active Volunteers',
-  },
-  {
-    number: '20+',
-    label: 'Years of Service',
+    number: "3+",
+    label: "Years of Service",
   },
 ];
 ---
@@ -88,7 +89,9 @@ const stats = [
     <div class="container">
       <h1>Make a Difference in Royalwood</h1>
       <p class="hero-lead">
-        Join us in building a vibrant, connected community. Whether you want to volunteer, lead, or simply stay informed, there's a role for you in the RNA.
+        Join us in building a vibrant, connected community. Whether you want to
+        volunteer, lead, or simply stay informed, there's a role for you in the
+        RNA.
       </p>
     </div>
   </section>
@@ -96,26 +99,33 @@ const stats = [
   <!-- Ways to Get Involved -->
   <section class="section">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--space-12);">Ways to Get Involved</h2>
+      <h2 style="text-align: center; margin-bottom: var(--space-12);">
+        Ways to Get Involved
+      </h2>
       <div class="involvement-grid">
-        {involvementWays.map((way) => (
-          <div class="involvement-card card">
-            <div class="card__body">
-              <div class="involvement-icon">{way.icon}</div>
-              <h3>{way.title}</h3>
-              <p>{way.description}</p>
-              {way.buttonLink !== '#' ? (
-                <a href={way.buttonLink} class="btn btn--primary btn--sm">
-                  {way.buttonText}
-                </a>
-              ) : (
-                <button class="btn btn--secondary btn--sm" onclick="navigator.share({title: 'Royalwood Neighbourhood Association', url: window.location.origin})">
-                  {way.buttonText}
-                </button>
-              )}
+        {
+          involvementWays.map((way) => (
+            <div class="involvement-card card">
+              <div class="card__body">
+                <div class="involvement-icon">{way.icon}</div>
+                <h3>{way.title}</h3>
+                <p>{way.description}</p>
+                {way.buttonLink !== "#" ? (
+                  <a href={way.buttonLink} class="btn btn--primary btn--sm">
+                    {way.buttonText}
+                  </a>
+                ) : (
+                  <button
+                    class="btn btn--secondary btn--sm"
+                    onclick="navigator.share({title: 'Royalwood Neighbourhood Association', url: window.location.origin})"
+                  >
+                    {way.buttonText}
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
@@ -123,22 +133,30 @@ const stats = [
   <!-- Current Opportunities Section -->
   <section class="section opportunities-section">
     <div class="container">
-      <h2 style="margin-bottom: var(--space-8);">Current Volunteer Opportunities</h2>
+      <h2 style="margin-bottom: var(--space-8);">
+        Current Volunteer Opportunities
+      </h2>
       <p style="margin-bottom: var(--space-8); color: var(--color-text-muted);">
-        We have several active volunteer roles available right now. Explore these opportunities and find something that fits your schedule and interests!
+        We have several active volunteer roles available right now. Explore
+        these opportunities and find something that fits your schedule and
+        interests!
       </p>
 
       <div class="opportunities-list">
-        {opportunities.map((opp, index) => (
-          <div class="opportunity-item" key={index}>
-            <div class="opportunity-header">
-              <h3 class="opportunity-role">{opp.role}</h3>
-              <span class="opportunity-commitment">{opp.commitment}</span>
+        {
+          opportunities.map((opp) => (
+            <div class="opportunity-item">
+              <div class="opportunity-header">
+                <h3 class="opportunity-role">{opp.role}</h3>
+                <span class="opportunity-commitment">{opp.commitment}</span>
+              </div>
+              <p class="opportunity-description">{opp.description}</p>
+              <a href="/contact" class="btn btn--secondary btn--sm">
+                Sign Up
+              </a>
             </div>
-            <p class="opportunity-description">{opp.description}</p>
-            <a href="/contact" class="btn btn--secondary btn--sm">Sign Up</a>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
@@ -146,12 +164,21 @@ const stats = [
   <!-- Newsletter Signup Section -->
   <section class="section newsletter-section">
     <div class="container container--narrow">
-      <h2 style="text-align: center; margin-bottom: var(--space-4);">Stay Updated</h2>
-      <p style="text-align: center; margin-bottom: var(--space-8); color: var(--color-text-muted);">
-        Subscribe to our newsletter to stay informed about upcoming events, community news, and volunteer opportunities.
+      <h2 style="text-align: center; margin-bottom: var(--space-4);">
+        Stay Updated
+      </h2>
+      <p
+        style="text-align: center; margin-bottom: var(--space-8); color: var(--color-text-muted);"
+      >
+        Subscribe to our newsletter to stay informed about upcoming events,
+        community news, and volunteer opportunities.
       </p>
 
-      <form class="newsletter-form" action="https://formspree.io/f/placeholder" method="POST">
+      <form
+        class="newsletter-form"
+        action="https://formspree.io/f/placeholder"
+        method="POST"
+      >
         <div class="newsletter-input-group">
           <input
             type="email"
@@ -161,7 +188,10 @@ const stats = [
           />
           <button type="submit" class="btn btn--primary">Subscribe</button>
         </div>
-        <p class="newsletter-disclaimer" style="text-align: center; font-size: 0.85rem; margin-top: var(--space-4);">
+        <p
+          class="newsletter-disclaimer"
+          style="text-align: center; font-size: 0.85rem; margin-top: var(--space-4);"
+        >
           We respect your privacy. Unsubscribe at any time.
         </p>
       </form>
@@ -171,14 +201,18 @@ const stats = [
   <!-- Community Impact Stats -->
   <section class="section stats-section">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--space-12);">Our Impact</h2>
+      <h2 style="text-align: center; margin-bottom: var(--space-12);">
+        Our Impact
+      </h2>
       <div class="stats-grid">
-        {stats.map((stat) => (
-          <div class="stat-box">
-            <div class="stat-number">{stat.number}</div>
-            <div class="stat-label">{stat.label}</div>
-          </div>
-        ))}
+        {
+          stats.map((stat) => (
+            <div class="stat-box">
+              <div class="stat-number">{stat.number}</div>
+              <div class="stat-label">{stat.label}</div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -187,7 +221,7 @@ const stats = [
 <style scoped>
   /* Hero Section */
   .hero {
-    background: linear-gradient(135deg, var(--color-accent) 0%, #1B4D3A 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, #1b4d3a 100%);
     color: white;
     padding: var(--space-20) 0;
     text-align: center;
@@ -346,13 +380,17 @@ const stats = [
 
   /* Stats Section */
   .stats-section {
-    background: linear-gradient(135deg, var(--color-highlight) 0%, #D4843A 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-highlight) 0%,
+      #d4843a 100%
+    );
     color: white;
   }
 
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
   }
 
@@ -386,7 +424,7 @@ const stats = [
     }
 
     .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
     }
 
     .opportunity-header {
@@ -417,7 +455,7 @@ const stats = [
     }
 
     .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       gap: var(--space-4);
     }
 

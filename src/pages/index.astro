@@ -1,27 +1,51 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const recentPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const allEvents = await getCollection('events', ({ data }) => !data.draft);
+const allEvents = await getCollection("events", ({ data }) => !data.draft);
 const upcomingEvents = allEvents
-  .filter(e => e.data.eventDate >= new Date())
+  .filter((e) => e.data.eventDate >= new Date())
   .sort((a, b) => a.data.eventDate.valueOf() - b.data.eventDate.valueOf())
   .slice(0, 3);
 
 function formatPostDate(date: Date) {
-  return date.toLocaleDateString('en-CA', { month: 'long', day: 'numeric', year: 'numeric' });
+  return date.toLocaleDateString("en-CA", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 const quickLinks = [
-  { icon: '📋', title: 'Resources',    desc: 'Bylaws, guides, meeting minutes, and more.',     href: '/resources' },
-  { icon: '📅', title: 'Events',       desc: 'Community gatherings, clean-ups, and meetings.',  href: '/events' },
-  { icon: '🤝', title: 'Get Involved', desc: 'Volunteer, join the board, or lend a hand.',      href: '/get-involved' },
-  { icon: '✉️', title: 'Contact Us',   desc: 'Questions? Reach out to the RNA board.',          href: '/contact' },
+  {
+    icon: "📋",
+    title: "Resources",
+    desc: "Bylaws, guides, meeting minutes, and more.",
+    href: "/resources",
+  },
+  {
+    icon: "📅",
+    title: "Events",
+    desc: "Community gatherings, clean-ups, and meetings.",
+    href: "/events",
+  },
+  {
+    icon: "🤝",
+    title: "Get Involved",
+    desc: "Volunteer, join the board, or lend a hand.",
+    href: "/get-involved",
+  },
+  {
+    icon: "✉️",
+    title: "Contact Us",
+    desc: "Questions? Reach out to the RNA board.",
+    href: "/contact",
+  },
 ];
 ---
 
@@ -34,22 +58,32 @@ const quickLinks = [
     <div class="container">
       <div class="hero__inner">
         <div class="hero__content">
-          <div class="hero__eyebrow badge badge--accent">Royalwood, Winnipeg, MB</div>
-          <h1 class="hero__title">Welcome to Your<br /><span class="hero__title-accent">Neighbourhood</span></h1>
+          <div class="hero__eyebrow badge badge--accent">
+            Royalwood, Winnipeg, MB
+          </div>
+          <h1 class="hero__title">
+            Welcome to Your<br /><span class="hero__title-accent"
+              >Neighbourhood</span>
+          </h1>
           <p class="hero__lead">
-            The Royalwood Neighbourhood Association connects residents, organizes community events,
-            and advocates for a vibrant, safe, and welcoming neighbourhood for everyone.
+            The Royalwood Neighbourhood Association connects residents,
+            organizes community events, and advocates for a vibrant, safe, and
+            welcoming neighbourhood for everyone.
           </p>
           <div class="hero__actions">
-            <a href="/get-involved" class="btn btn--primary btn--lg">Get Involved</a>
-            <a href="/about" class="btn btn--secondary btn--lg">Learn About RNA</a>
+            <a href="/get-involved" class="btn btn--primary btn--lg"
+              >Get Involved</a
+            >
+            <a href="/about" class="btn btn--secondary btn--lg"
+              >Learn About RNA</a
+            >
           </div>
         </div>
         <div class="hero__graphic" aria-hidden="true">
           <div class="hero__shape hero__shape--1"></div>
           <div class="hero__shape hero__shape--2"></div>
           <div class="hero__stat-card hero__stat-card--1">
-            <span class="hero__stat-num">500+</span>
+            <span class="hero__stat-num">50+</span>
             <span class="hero__stat-label">Households</span>
           </div>
           <div class="hero__stat-card hero__stat-card--2">
@@ -69,96 +103,132 @@ const quickLinks = [
   <section class="section section--sm quick-links-section">
     <div class="container">
       <div class="quick-links">
-        {quickLinks.map(link => (
-          <a href={link.href} class="quick-link">
-            <span class="quick-link__icon" aria-hidden="true">{link.icon}</span>
-            <div>
-              <div class="quick-link__title">{link.title}</div>
-              <div class="quick-link__desc">{link.desc}</div>
-            </div>
-          </a>
-        ))}
+        {
+          quickLinks.map((link) => (
+            <a href={link.href} class="quick-link">
+              <span class="quick-link__icon" aria-hidden="true">
+                {link.icon}
+              </span>
+              <div>
+                <div class="quick-link__title">{link.title}</div>
+                <div class="quick-link__desc">{link.desc}</div>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- ── Latest News ───────────────────────────────────────── -->
-  {recentPosts.length > 0 && (
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Latest News</h2>
-            <p class="section-lead">Stay up to date with what's happening in Royalwood.</p>
+  {
+    recentPosts.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Latest News</h2>
+              <p class="section-lead">
+                Stay up to date with what's happening in Royalwood.
+              </p>
+            </div>
+            <a href="/blog" class="btn btn--secondary">
+              All News →
+            </a>
           </div>
-          <a href="/blog" class="btn btn--secondary">All News →</a>
-        </div>
-        <div class="grid-3">
-          {recentPosts.map(post => (
-            <article class="card post-card">
-              <div class="card__body">
-                {post.data.category && (
-                  <span class="badge badge--accent" style="margin-bottom: 0.75rem; display: inline-flex;">
-                    {post.data.category}
-                  </span>
-                )}
-                <h3 class="post-card__title">
-                  <a href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`} class="post-card__link">{post.data.title}</a>
-                </h3>
-                <p class="post-card__excerpt">{post.data.description}</p>
-                <div class="post-card__meta">
-                  <time datetime={post.data.pubDate.toISOString()}>
-                    {formatPostDate(post.data.pubDate)}
-                  </time>
+          <div class="grid-3">
+            {recentPosts.map((post) => (
+              <article class="card post-card">
+                <div class="card__body">
+                  {post.data.category && (
+                    <span
+                      class="badge badge--accent"
+                      style="margin-bottom: 0.75rem; display: inline-flex;"
+                    >
+                      {post.data.category}
+                    </span>
+                  )}
+                  <h3 class="post-card__title">
+                    <a
+                      href={`/blog/${post.id.replace(/\.(md|mdx)$/, "")}`}
+                      class="post-card__link"
+                    >
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <p class="post-card__excerpt">{post.data.description}</p>
+                  <div class="post-card__meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {formatPostDate(post.data.pubDate)}
+                    </time>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <!-- ── Upcoming Events ───────────────────────────────────── -->
-  {upcomingEvents.length > 0 && (
-    <section class="section events-section">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Upcoming Events</h2>
-            <p class="section-lead">Join your neighbours at these upcoming community events.</p>
+  {
+    upcomingEvents.length > 0 && (
+      <section class="section events-section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Upcoming Events</h2>
+              <p class="section-lead">
+                Join your neighbours at these upcoming community events.
+              </p>
+            </div>
+            <a href="/events" class="btn btn--secondary">
+              All Events →
+            </a>
           </div>
-          <a href="/events" class="btn btn--secondary">All Events →</a>
-        </div>
-        <div class="events-list">
-          {upcomingEvents.map(event => (
-            <article class="event-row">
-              <div class="event-row__date">
-                <span class="event-row__month">
-                  {event.data.eventDate.toLocaleDateString('en-CA', { month: 'short' })}
-                </span>
-                <span class="event-row__day">
-                  {event.data.eventDate.getDate()}
-                </span>
-              </div>
-              <div class="event-row__info">
-                <span class={`badge badge--${event.data.category === 'meeting' ? 'neutral' : 'highlight'}`}>
-                  {event.data.category}
-                </span>
-                <h3 class="event-row__title">
-                  <a href={`/events/${event.id.replace(/\.(md|mdx)$/, '')}`}>{event.data.title}</a>
-                </h3>
-                <div class="event-row__meta">
-                  <span>📍 {event.data.location}</span>
-                  <span>🕐 {event.data.eventDate.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })}</span>
+          <div class="events-list">
+            {upcomingEvents.map((event) => (
+              <article class="event-row">
+                <div class="event-row__date">
+                  <span class="event-row__month">
+                    {event.data.eventDate.toLocaleDateString("en-CA", {
+                      month: "short",
+                    })}
+                  </span>
+                  <span class="event-row__day">
+                    {event.data.eventDate.getDate()}
+                  </span>
                 </div>
-              </div>
-            </article>
-          ))}
+                <div class="event-row__info">
+                  <span
+                    class={`badge badge--${event.data.category === "meeting" ? "neutral" : "highlight"}`}
+                  >
+                    {event.data.category}
+                  </span>
+                  <h3 class="event-row__title">
+                    <a href={`/events/${event.id.replace(/\.(md|mdx)$/, "")}`}>
+                      {event.data.title}
+                    </a>
+                  </h3>
+                  <div class="event-row__meta">
+                    <span>📍 {event.data.location}</span>
+                    <span>
+                      🕐{" "}
+                      {event.data.eventDate.toLocaleTimeString("en-CA", {
+                        hour: "numeric",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <!-- ── About Strip ───────────────────────────────────────── -->
   <section class="section about-strip">
@@ -167,24 +237,30 @@ const quickLinks = [
         <div class="about-strip__text">
           <h2>About the RNA</h2>
           <p>
-            The Royalwood Neighbourhood Association has been at the heart of our community for over two decades.
-            We're a volunteer-run, non-profit organization dedicated to representing residents,
-            organizing events, and making Royalwood one of Winnipeg's most connected neighbourhoods.
+            The Royalwood Neighbourhood Association has been at the heart of our
+            community for over two decades. We're a volunteer-run, non-profit
+            organization dedicated to representing residents, organizing events,
+            and making Royalwood one of Winnipeg's most connected
+            neighbourhoods.
           </p>
           <a href="/about" class="btn btn--primary">Meet the Board</a>
         </div>
         <div class="about-strip__values">
-          {[
-            { icon: '🌳', label: 'Community First' },
-            { icon: '🗣️', label: 'Open Communication' },
-            { icon: '🏡', label: 'Resident Advocacy' },
-            { icon: '🎉', label: 'Vibrant Events' },
-          ].map(v => (
-            <div class="value-chip">
-              <span class="value-chip__icon" aria-hidden="true">{v.icon}</span>
-              <span>{v.label}</span>
-            </div>
-          ))}
+          {
+            [
+              { icon: "🌳", label: "Community First" },
+              { icon: "🗣️", label: "Open Communication" },
+              { icon: "🏡", label: "Resident Advocacy" },
+              { icon: "🎉", label: "Vibrant Events" },
+            ].map((v) => (
+              <div class="value-chip">
+                <span class="value-chip__icon" aria-hidden="true">
+                  {v.icon}
+                </span>
+                <span>{v.label}</span>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -192,336 +268,389 @@ const quickLinks = [
 </BaseLayout>
 
 <style>
-/* ── Hero ──────────────────────────────────────────────────── */
-.hero {
-  background: linear-gradient(135deg, #f0faf4 0%, #fafaf8 50%, #fff8f0 100%);
-  padding-block: var(--space-20) var(--space-16);
-  overflow: hidden;
-}
+  /* ── Hero ──────────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, #f0faf4 0%, #fafaf8 50%, #fff8f0 100%);
+    padding-block: var(--space-20) var(--space-16);
+    overflow: hidden;
+  }
 
-.hero__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-12);
-  align-items: center;
-}
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
 
-.hero__eyebrow { margin-bottom: var(--space-4); }
+  .hero__eyebrow {
+    margin-bottom: var(--space-4);
+  }
 
-.hero__title {
-  margin-bottom: var(--space-5);
-  line-height: 1.1;
-}
+  .hero__title {
+    margin-bottom: var(--space-5);
+    line-height: 1.1;
+  }
 
-.hero__title-accent { color: var(--color-accent); }
+  .hero__title-accent {
+    color: var(--color-accent);
+  }
 
-.hero__lead {
-  font-size: 1.125rem;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-8);
-  max-width: 520px;
-  line-height: 1.7;
-}
+  .hero__lead {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+    max-width: 520px;
+    line-height: 1.7;
+  }
 
-.hero__actions {
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-}
+  .hero__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
 
-.hero__graphic {
-  position: relative;
-  height: 380px;
-}
+  .hero__graphic {
+    position: relative;
+    height: 380px;
+  }
 
-.hero__shape {
-  position: absolute;
-  border-radius: var(--radius-xl);
-}
+  .hero__shape {
+    position: absolute;
+    border-radius: var(--radius-xl);
+  }
 
-.hero__shape--1 {
-  width: 280px; height: 280px;
-  background: var(--color-accent);
-  opacity: 0.1;
-  top: 0; right: 0;
-  transform: rotate(15deg);
-}
+  .hero__shape--1 {
+    width: 280px;
+    height: 280px;
+    background: var(--color-accent);
+    opacity: 0.1;
+    top: 0;
+    right: 0;
+    transform: rotate(15deg);
+  }
 
-.hero__shape--2 {
-  width: 200px; height: 200px;
-  background: var(--color-highlight);
-  opacity: 0.12;
-  bottom: 30px; right: 60px;
-  transform: rotate(-10deg);
-}
+  .hero__shape--2 {
+    width: 200px;
+    height: 200px;
+    background: var(--color-highlight);
+    opacity: 0.12;
+    bottom: 30px;
+    right: 60px;
+    transform: rotate(-10deg);
+  }
 
-.hero__stat-card {
-  position: absolute;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4) var(--space-5);
-  box-shadow: var(--shadow-md);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--space-1);
-  min-width: 120px;
-}
+  .hero__stat-card {
+    position: absolute;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-1);
+    min-width: 120px;
+  }
 
-.hero__stat-num {
-  font-family: var(--font-serif);
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  line-height: 1;
-}
+  .hero__stat-num {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+  }
 
-.hero__stat-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  line-height: 1.3;
-}
+  .hero__stat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    line-height: 1.3;
+  }
 
-.hero__stat-card--1 { top: 20px;    left: 20px; }
-.hero__stat-card--2 { top: 120px;   right: 20px; }
-.hero__stat-card--3 { bottom: 40px; left: 60px; }
+  .hero__stat-card--1 {
+    top: 20px;
+    left: 20px;
+  }
+  .hero__stat-card--2 {
+    top: 120px;
+    right: 20px;
+  }
+  .hero__stat-card--3 {
+    bottom: 40px;
+    left: 60px;
+  }
 
-/* ── Quick Links ───────────────────────────────────────────── */
-.quick-links-section {
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-}
+  /* ── Quick Links ───────────────────────────────────────────── */
+  .quick-links-section {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
 
-.quick-links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
+  .quick-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
 
-.quick-link {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-  padding: var(--space-5);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  text-decoration: none;
-  transition: all var(--transition);
-}
+  .quick-link {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all var(--transition);
+  }
 
-.quick-link:hover {
-  border-color: var(--color-accent-light);
-  background: var(--color-accent-pale);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
+  .quick-link:hover {
+    border-color: var(--color-accent-light);
+    background: var(--color-accent-pale);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
 
-.quick-link__icon {
-  font-size: 1.75rem;
-  flex-shrink: 0;
-  line-height: 1;
-}
+  .quick-link__icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
 
-.quick-link__title {
-  font-weight: 700;
-  font-size: 0.9375rem;
-  color: var(--color-text);
-  margin-bottom: var(--space-1);
-}
+  .quick-link__title {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-1);
+  }
 
-.quick-link__desc {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  line-height: 1.4;
-}
+  .quick-link__desc {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
 
-/* ── Section Header ────────────────────────────────────────── */
-.section-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--space-4);
-  margin-bottom: var(--space-8);
-}
+  /* ── Section Header ────────────────────────────────────────── */
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
 
-.section-title { margin-bottom: var(--space-2); }
-.section-lead  { color: var(--color-text-muted); margin: 0; }
+  .section-title {
+    margin-bottom: var(--space-2);
+  }
+  .section-lead {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
 
-/* ── Post Cards ────────────────────────────────────────────── */
-.post-card__title {
-  font-size: 1.1rem;
-  margin-bottom: var(--space-3);
-  line-height: 1.35;
-}
+  /* ── Post Cards ────────────────────────────────────────────── */
+  .post-card__title {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-3);
+    line-height: 1.35;
+  }
 
-.post-card__link {
-  color: var(--color-text);
-  text-decoration: none;
-  transition: color var(--transition);
-}
+  .post-card__link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
 
-.post-card__link:hover { color: var(--color-accent); }
+  .post-card__link:hover {
+    color: var(--color-accent);
+  }
 
-.post-card__excerpt {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-4);
-  line-height: 1.6;
-}
+  .post-card__excerpt {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    line-height: 1.6;
+  }
 
-.post-card__meta {
-  font-size: 0.8125rem;
-  color: var(--color-text-subtle);
-}
+  .post-card__meta {
+    font-size: 0.8125rem;
+    color: var(--color-text-subtle);
+  }
 
-/* ── Events Section ────────────────────────────────────────── */
-.events-section { background: var(--color-surface-alt); }
+  /* ── Events Section ────────────────────────────────────────── */
+  .events-section {
+    background: var(--color-surface-alt);
+  }
 
-.events-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
 
-.event-row {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-5);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5) var(--space-6);
-  transition: all var(--transition);
-}
+  .event-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5) var(--space-6);
+    transition: all var(--transition);
+  }
 
-.event-row:hover {
-  border-color: var(--color-accent-light);
-  box-shadow: var(--shadow-sm);
-}
+  .event-row:hover {
+    border-color: var(--color-accent-light);
+    box-shadow: var(--shadow-sm);
+  }
 
-.event-row__date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--color-accent-pale);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
-  min-width: 56px;
-  flex-shrink: 0;
-}
+  .event-row__date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-accent-pale);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    min-width: 56px;
+    flex-shrink: 0;
+  }
 
-.event-row__month {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-accent);
-}
+  .event-row__month {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
 
-.event-row__day {
-  font-family: var(--font-serif);
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  line-height: 1;
-}
+  .event-row__day {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+  }
 
-.event-row__info { flex: 1; min-width: 0; }
+  .event-row__info {
+    flex: 1;
+    min-width: 0;
+  }
 
-.event-row__title {
-  font-size: 1.0625rem;
-  margin: var(--space-2) 0;
-}
+  .event-row__title {
+    font-size: 1.0625rem;
+    margin: var(--space-2) 0;
+  }
 
-.event-row__title a {
-  color: var(--color-text);
-  text-decoration: none;
-}
+  .event-row__title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
 
-.event-row__title a:hover { color: var(--color-accent); }
+  .event-row__title a:hover {
+    color: var(--color-accent);
+  }
 
-.event-row__meta {
-  display: flex;
-  gap: var(--space-4);
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  flex-wrap: wrap;
-}
+  .event-row__meta {
+    display: flex;
+    gap: var(--space-4);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    flex-wrap: wrap;
+  }
 
-/* ── About Strip ───────────────────────────────────────────── */
-.about-strip {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #1B4D3A 100%);
-  color: white;
-}
+  /* ── About Strip ───────────────────────────────────────────── */
+  .about-strip {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #1b4d3a 100%);
+    color: white;
+  }
 
-.about-strip__inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--space-12);
-  align-items: center;
-}
+  .about-strip__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-12);
+    align-items: center;
+  }
 
-.about-strip h2 { color: white; margin-bottom: var(--space-4); }
+  .about-strip h2 {
+    color: white;
+    margin-bottom: var(--space-4);
+  }
 
-.about-strip p {
-  color: rgba(255,255,255,0.8);
-  margin-bottom: var(--space-6);
-  max-width: 520px;
-  font-size: 1.0625rem;
-}
+  .about-strip p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--space-6);
+    max-width: 520px;
+    font-size: 1.0625rem;
+  }
 
-.about-strip .btn--primary {
-  background: white;
-  color: var(--color-accent);
-  border-color: white;
-}
+  .about-strip .btn--primary {
+    background: white;
+    color: var(--color-accent);
+    border-color: white;
+  }
 
-.about-strip .btn--primary:hover {
-  background: var(--color-accent-pale);
-  border-color: var(--color-accent-pale);
-}
+  .about-strip .btn--primary:hover {
+    background: var(--color-accent-pale);
+    border-color: var(--color-accent-pale);
+  }
 
-.about-strip__values {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
-}
+  .about-strip__values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
 
-.value-chip {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: white;
-  white-space: nowrap;
-}
+  .value-chip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+  }
 
-.value-chip__icon { font-size: 1.2rem; }
+  .value-chip__icon {
+    font-size: 1.2rem;
+  }
 
-/* ── Responsive ────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .quick-links { grid-template-columns: repeat(2, 1fr); }
-}
+  /* ── Responsive ────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .quick-links {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 
-@media (max-width: 800px) {
-  .hero__inner { grid-template-columns: 1fr; }
-  .hero__graphic { display: none; }
-  .about-strip__inner { grid-template-columns: 1fr; }
-  .about-strip__values { grid-template-columns: repeat(2, 1fr); }
-}
+  @media (max-width: 800px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+    .hero__graphic {
+      display: none;
+    }
+    .about-strip__inner {
+      grid-template-columns: 1fr;
+    }
+    .about-strip__values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 
-@media (max-width: 640px) {
-  .quick-links { grid-template-columns: 1fr; }
-  .about-strip__values { grid-template-columns: 1fr; }
-  .section-header { flex-direction: column; align-items: flex-start; }
-}
+  @media (max-width: 640px) {
+    .quick-links {
+      grid-template-columns: 1fr;
+    }
+    .about-strip__values {
+      grid-template-columns: 1fr;
+    }
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 </style>

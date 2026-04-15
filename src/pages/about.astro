@@ -1,42 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
 const pageTitle = "About";
 const pageDescription =
   "Learn about the Royalwood Neighbourhood Association, our mission, values, and board members.";
 
-const boardMembers = [
-  {
-    name: "Sarah Mitchell",
-    role: "President",
-    bio: "Resident since 2008, passionate about community building and green spaces.",
-  },
-  {
-    name: "James Okafor",
-    role: "Vice President",
-    bio: "Former city planner with a focus on neighbourhood development.",
-  },
-  {
-    name: "Linda Tran",
-    role: "Secretary",
-    bio: "Keeps us organized and ensures every voice is heard.",
-  },
-  {
-    name: "David Kowalski",
-    role: "Treasurer",
-    bio: "Brings financial expertise and transparency to the board.",
-  },
-  {
-    name: "Priya Sharma",
-    role: "Events Director",
-    bio: "Creates memorable community experiences for all ages.",
-  },
-  {
-    name: "Tom Leblanc",
-    role: "Communications",
-    bio: "Keeps residents informed and engaged.",
-  },
-];
+const boardMembers = await getCollection("boardMembers");
 
 const values = [
   {
@@ -141,7 +111,7 @@ const values = [
       </h2>
       <div class="grid-3">
         {
-          boardMembers.map((member) => (
+          boardMembers.map(({ data: member }) => (
             <div class="card">
               <div class="card__body">
                 <h3 class="member-name">{member.name}</h3>

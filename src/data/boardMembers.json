@@ -1,0 +1,38 @@
+[
+  {
+    "id": "0",
+    "name": "Glen Cottick",
+    "role": "Chair",
+    "bio": "Glen has resided on Norcross Cr. since 2001, relishing in the many quiet, natural spaces offered by the neighbourhood.  He has held a number of board positions within industry, youth sport, and children's charities."
+  },
+  {
+    "id": "1",
+    "name": "Anirudh Pathak",
+    "role": "Vice-Chair",
+    "bio": "Anirudh and his family fell in love with Royalwood and the Bois des Esprits, so in 2021 they decided to call it home. He is a Management Consultant who has experience volunteering on the boards of various organizations and can be found socializing and 'checking out' the neighborhood on his daily dog walks."
+  },
+  {
+    "id": "2",
+    "name": "Jim Clark",
+    "role": "Treasurer",
+    "bio": "Jim has lived in Royalwood since 2015, and appreciates the cooperation and friendship among his neighbours. He previously held a treasurer role with a Winnipeg charity."
+  },
+  {
+    "id": "3",
+    "name": "Miles Derco",
+    "role": "Director",
+    "bio": "Miles moved to Northport Bay in 2018 and immediately felt part of the community.   Miles has owned and operated a business in Winnipeg for over 30 years and has extensive experience in overseeing projects.  You can find Miles running the trail in Bois des Esprits in the warm weather and skiing the river in the winter."
+  },
+  {
+    "id": "4",
+    "name": "Cory Crook",
+    "role": "Director",
+    "bio": "Cory and his family moved to Royalwood from Toronto in 2022 where they were immediately welcomed by genuine neighbours who quickly became good friends. Cory works as a software engineer, enjoys writing music, painting, woodworking, and spending time outdoors - especially with his family."
+  },
+  {
+    "id": "5",
+    "name": "Ron Youngson",
+    "role": "Director",
+    "bio": "Ron has resided in Royalwood since 2012. He serves on Boards at the University of Winnipeg and the Manitoba Museum. He is a pickleball enthusiast and can be seen walking his golden retriever Buzz in and around Shorehill Drive Park."
+  }
+]

@@ -91,6 +91,14 @@ const values = await getCollection("boardValues");
           boardMembers.map(({ data: member }) => (
             <div class="card">
               <div class="card__body">
+                <img
+                  src={
+                    member.image ||
+                    `https://placehold.co/150x150/cccccc/666666?text=${encodeURIComponent(member.name.split(" ")[0])}`
+                  }
+                  alt={`${member.name} photo`}
+                  class="member-photo"
+                />
                 <h3 class="member-name">{member.name}</h3>
                 <div
                   class="badge badge--accent"
@@ -200,6 +208,17 @@ const values = await getCollection("boardValues");
   }
 
   /* Board Members Section */
+  .member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: var(--space-6);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .member-name {
     margin-bottom: var(--space-3);
     font-size: 1.25rem;

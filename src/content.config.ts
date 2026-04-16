@@ -53,6 +53,7 @@ const boardMembers = defineCollection({
     name: z.string(),
     role: z.string(),
     bio: z.string(),
+    image: z.string(),
   }),
 });
 

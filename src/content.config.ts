@@ -77,6 +77,14 @@ const boardValues = defineCollection({
   }),
 });
 
+const navLinks = defineCollection({
+  loader: file("src/data/navLinks.json"),
+  schema: z.object({
+    href: z.string(),
+    label: z.string(),
+  }),
+});
+
 const volunteerOpportunities = defineCollection({
   loader: file("src/data/volunteerOpportunities.json"),
   schema: z.object({
@@ -94,5 +102,6 @@ export const collections = {
   boardMembers,
   statsDatas,
   boardValues,
+  navLinks,
   volunteerOpportunities,
 };
